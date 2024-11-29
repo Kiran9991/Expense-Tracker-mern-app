@@ -1,43 +1,172 @@
-.formContainer {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.loginContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  padding-top: 50px;
+  padding: 0 20px; /* Adds padding to adjust for smaller screens */
+  background: url("../images/background\ photo\ of\ sky.webp") no-repeat center
+    center fixed;
+  background-size: cover;
 }
 
-.mainForm {
-  width: 100vh;
-  background: #d98f8f;
-  height: 52vh;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.formInputs {
-  padding: 0px 5px 0px 5px;
-}
-
-.formBtn {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0px 5px 0px 5px;
-}
-
-.formBtn button {
-  border-radius: 5px;
-  padding: 10px;
-  width: 10rem;
-  border: none;
-  background: #a33232;
-  color: white;
-}
-
-.formInputs input {
-  margin: 5px 0 22px 0;
+.loginCard {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
   width: 100%;
-  padding: 10px;
+}
+
+.loginIcon img {
+  width: 40px;
+  height: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin: 15px 0;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.forgotPassword a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+}
+
+.btnPrimary {
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  color: #fff;
   border: none;
-  background: rgb(238, 235, 235);
-  border-radius: 5px;
-  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btnPrimary:hover {
+  background-color: #333;
+}
+
+.orText {
+  margin: 20px 0;
+  color: #666;
+}
+
+.socialIcons img {
+  width: 40px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.socialIcons img:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .loginCard {
+    max-width: 350px; /* Reduces width on tablets */
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    max-width: 90%; /* Full width on smaller screens */
+    padding: 20px; /* Reduces padding */
+  }
+
+  .loginIcon img {
+    width: 30px; /* Smaller icons */
+    height: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px; /* Adjust input padding */
+  }
+
+  .socialIcons img {
+    width: 30px; /* Smaller social icons */
+  }
+}
+
+.signInText {
+  font-size: 0.8rem;
+  color: grey;
+  text-align: center;
+  margin: 15px 0; /* Add space above and below */
+  display: inline; /* Ensure the text stays on the same line */
+}
+
+.signInLink {
+  color: grey;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.signInLink:hover {
+  color: darkgrey;
+}
+
+.orText {
+  margin-top: 10px; /* Space above the "Or sign in with" text */
+  font-size: 0.9rem;
+  color: grey;
+  text-align: center;
 }

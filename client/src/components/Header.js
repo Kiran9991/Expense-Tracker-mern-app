@@ -1,18 +1,36 @@
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 
 const Header = (prop) => {
-    const isLogin = prop.isLogin;
+  const isLogin = prop.isLogin;
   return (
     <div>
       <nav className={styles.nav}>
         <div className={styles.navItemsLeftContainer}>
-          <div className={styles.navLeftItem}>Home</div>
-          {isLogin && <div className={styles.navLeftItem}>About Us</div>}
+          {!isLogin && (
+            <Link to={"/home"} className={styles.navLeftItem}>
+              Home
+            </Link>
+          )}
+          <Link to={"/expense/form"} className={styles.navLeftItem}>Expense Tracker</Link>
+          {!isLogin && (
+            <Link to={"/about-us"} className={styles.navLeftItem}>
+              About Us
+            </Link>
+          )}
         </div>
-        
+
         <div className={styles.navItemsRightContainer}>
-            {!isLogin && <div className={styles.navRightItem}>Sign in</div>}
-            {isLogin && <div className={styles.navRightItem}>Sign up</div>}
+          {!isLogin && (
+            <Link to={"/sign-in"} className={styles.navRightItem}>
+              Sign in
+            </Link>
+          )}
+          {isLogin && (
+            <Link to={"/sign-up"} className={styles.navRightItem}>
+              Sign up
+            </Link>
+          )}
         </div>
       </nav>
     </div>

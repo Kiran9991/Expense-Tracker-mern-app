@@ -21,10 +21,14 @@ nav {
 
 .navRightItem {
   padding-left: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .navLeftItem {
   padding-right: 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .navRightItem:hover {

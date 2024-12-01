@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./form.module.css";
-import signupIcon from "../images/signup symbol.png";
+import signupIcon from "../../images/signup symbol.png";
 
 const Signin = (prop) => {
   const enteredEmail = useRef();

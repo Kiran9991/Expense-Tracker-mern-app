@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
-import signupIcon from "../images/signup symbol.png";
+import signupIcon from "../../images/signup symbol.png";
 
 export const validatePassword = (password, confirmPassword) => {
   if (password.length < 6) return false;

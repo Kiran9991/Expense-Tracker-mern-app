@@ -3,10 +3,10 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: system-ui;
 }
 
 body {
   margin: 0;
-  background: #cf5c70;
+  background: white;
 }

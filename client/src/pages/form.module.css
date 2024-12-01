@@ -2,14 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: system-ui;
 }
 
 .loginContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 91vh;
   padding: 0 20px; /* Adds padding to adjust for smaller screens */
   background: url("../images/background\ photo\ of\ sky.webp") no-repeat center
     center fixed;

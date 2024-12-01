@@ -1,61 +1,47 @@
 import React, { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import styles from "./form.module.css";
 import signupIcon from "../images/signup symbol.png";
 
-export const validatePassword = (password, confirmPassword) => {
-  if (password.length < 6) return false;
-
-  if (password !== confirmPassword) return false;
-
-  return true;
-};
-
-const Signup = (prop) => {
-  const navigate = useNavigate();
+const Signin = (prop) => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
-  const enteredConfirmPassword = useRef();
 
   const submitFormHandler = async (e) => {
     e.preventDefault();
     let email = enteredEmail.current.value;
     let password = enteredPassword.current.value;
-    let confirmPassword = enteredConfirmPassword.current.value;
 
     let obj = {
       email,
       password,
-      confirmPassword,
     };
 
-    if (validatePassword(password, confirmPassword)) {
+    if (password.length >= 6) {
       try {
-        const response = await fetch('http://localhost:3000/user/signup', {
-          method:'POST',
+        const response = await fetch("http://localhost:3000/user/signin", {
+          method: "POST",
           headers: {
-            'Content-Type':'application/json',
+            "Content-Type": "application/json",
           },
-          body:JSON.stringify(obj)
-        })
-        const message = await response.json();
-        if(!response.ok) throw new Error(message.message);
-        alert(message.message);
-        // window.location.href = '/signin';
-        navigate('/signin')
-      } catch(error) {
+          body: JSON.stringify(obj),
+        });
+        const { message, token } = await response.json();
+        if(!response.ok) throw new Error(message);
+        localStorage.setItem('token', token);
+        prop.setAuth();
+        alert(message);
+      }catch(error) {
         alert(error)
       }
       
       enteredEmail.current.value = "";
       enteredPassword.current.value = "";
-      enteredConfirmPassword.current.value = "";
       // console.log("submitted", obj);
     } else {
       alert("Please Enter correct Password");
       enteredPassword.current.value = "";
-      enteredConfirmPassword.current.value = "";
     }
   };
 
@@ -65,7 +51,7 @@ const Signup = (prop) => {
         <div className={styles.loginIcon}>
           <img src={signupIcon} alt="Sign up Icon" />
         </div>
-        <h2>Sign up</h2>
+        <h2>Signin</h2>
         <form onSubmit={submitFormHandler}>
           <div className={styles.inputGroup}>
             <input
@@ -83,24 +69,19 @@ const Signup = (prop) => {
               ref={enteredPassword}
             />
           </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              required
-              ref={enteredConfirmPassword}
-            />
-          </div>
+
           {/* <div className={styles.forgotPassword}>
-            <a href="#">Forgot password?</a>
-          </div> */}
+              <a href="#">Forgot password?</a>
+            </div> */}
           <button type="submit" className={styles.btnPrimary}>
             Sign up
           </button>
 
           <div className={styles.signInText}>
-            Already signed up?{" "}
-            <Link to={"/signin"} className={styles.signInLink}>Sign in</Link>
+            New User? Signup here{" "}
+            <Link to={"/signup"} className={styles.signInLink}>
+              Sign up
+            </Link>
           </div>
         </form>
       </div>
@@ -108,4 +89,4 @@ const Signup = (prop) => {
   );
 };
 
-export default Signup;
+export default Signin;

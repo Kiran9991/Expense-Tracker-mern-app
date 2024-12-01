@@ -1,0 +1,36 @@
+nav {
+  display: flex;
+  background-color: rgb(18, 4, 39);
+  color: white;
+  justify-content: space-between;
+}
+
+.navItemsLeftContainer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.navItemsRightContainer {
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+  padding: 15px;
+}
+
+.navRightItem {
+  padding-left: 10px;
+}
+
+.navLeftItem {
+  padding-right: 10px;
+}
+
+.navRightItem:hover {
+    font-weight: bold;
+}
+
+.navLeftItem:hover {
+  font-weight: bold;
+}

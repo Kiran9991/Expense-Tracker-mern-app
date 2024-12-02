@@ -1,8 +1,18 @@
+import { useContext } from "react";
+import userContext from "../store/user-context";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Header = (prop) => {
-  const isLogin = prop.isLogin;
+const Header = () => {
+  const { isLogin, setIsLogin } = useContext(userContext)
+  const navigate = useNavigate();
+
+  const signoutHandler = () => {
+    localStorage.removeItem('token');
+    setIsLogin();
+    navigate('/sign-in')
+  }
+
   return (
     <div>
       <nav className={styles.nav}>
@@ -12,8 +22,8 @@ const Header = (prop) => {
               Home
             </Link>
           )}
-          <Link to={"/expense/form"} className={styles.navLeftItem}>Expense Tracker</Link>
-          {!isLogin && (
+          {isLogin && <Link to={"/expense/form"} className={styles.navLeftItem}>Expense Tracker</Link>}
+          {isLogin && (
             <Link to={"/about-us"} className={styles.navLeftItem}>
               About Us
             </Link>
@@ -21,16 +31,13 @@ const Header = (prop) => {
         </div>
 
         <div className={styles.navItemsRightContainer}>
-          {!isLogin && (
-            <Link to={"/sign-in"} className={styles.navRightItem}>
+            {!isLogin && <Link to={"/sign-in"} className={styles.navRightItem}>
               Sign in
-            </Link>
-          )}
-          {isLogin && (
-            <Link to={"/sign-up"} className={styles.navRightItem}>
-              Sign up
-            </Link>
-          )}
+            </Link>} 
+            {/* {!isLogin && <Link to={"/sign-up"} className={styles.navRightItem}>
+              Sign Out
+            </Link>} */}
+            {isLogin && <button className={styles.navBtn} onClick={signoutHandler}>Sign out</button>}
         </div>
       </nav>
     </div>

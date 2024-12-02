@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup symbol.png";
+import userContext from "../../store/user-context";
 
-const Signin = (prop) => {
+const Signin = () => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
+  const { setIsLogin } = useContext(userContext);
+  const navigate = useNavigate();
 
   const submitFormHandler = async (e) => {
     e.preventDefault();
@@ -28,14 +31,16 @@ const Signin = (prop) => {
           body: JSON.stringify(obj),
         });
         const { message, token } = await response.json();
-        if(!response.ok) throw new Error(message);
-        localStorage.setItem('token', token);
-        prop.setAuth();
+        if (!response.ok) throw new Error(message);
+        localStorage.setItem("token", token);
+        setIsLogin();
+        navigate('/home')
+        // prop.setAuth();
         alert(message);
-      }catch(error) {
-        alert(error)
+      } catch (error) {
+        alert(error);
       }
-      
+
       enteredEmail.current.value = "";
       enteredPassword.current.value = "";
       // console.log("submitted", obj);

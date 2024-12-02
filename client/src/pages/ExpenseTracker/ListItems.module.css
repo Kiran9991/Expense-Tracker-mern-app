@@ -1,0 +1,13 @@
+.listItemsContainer {
+    width: 600px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.listItem {
+    padding: 15px;
+    background-color: #6314ab;
+    border-radius: 5px;
+    margin: 5px 0px;
+    color: white;
+}

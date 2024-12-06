@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import userContext from "../store/user-context";
+import {UserContext} from "../store/user-context";
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { isLogin, setIsLogin } = useContext(userContext)
+  const { isLogin, setIsLogin } = useContext(UserContext)
   const navigate = useNavigate();
 
   const signoutHandler = () => {

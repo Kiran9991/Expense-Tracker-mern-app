@@ -10,4 +10,26 @@
     border-radius: 5px;
     margin: 5px 0px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.listNoItem {
+    text-align: center;
+    margin: 15px;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.itemOperation {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: tomato;
+    margin-left: 5px;
+    color: white;
+}
+
+.itemOperation:hover{
+    background-color: rgb(175, 39, 15);
 }

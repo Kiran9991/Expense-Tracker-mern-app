@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup symbol.png";
+import { LocalHost } from "../../App";
 
 export const validatePassword = (password, confirmPassword) => {
   if (password.length < 6) return false;
@@ -32,7 +33,7 @@ const Signup = (prop) => {
 
     if (validatePassword(password, confirmPassword)) {
       try {
-        const response = await fetch('http://localhost:3000/user/signup', {
+        const response = await fetch(`${LocalHost}/user/signup`, {
           method:'POST',
           headers: {
             'Content-Type':'application/json',

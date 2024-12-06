@@ -1,13 +1,14 @@
 import React, { useContext, useRef } from "react";
 import styles from "./Form.module.css";
-import userContext from "../../store/user-context";
+import { expenseContext } from "../../store/expense-context";
+import { LocalHost } from "../../App";
 
 export default function Form() {
   const expenseRef = useRef(null);
   const amountRef = useRef(null);
   const descriptionRef = useRef(null);
   const categoryRef = useRef(null);
-  const { setExpenses } = useContext(userContext);
+  const { addExpense } = useContext(expenseContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +19,20 @@ export default function Form() {
       category: categoryRef.current.value,
     };
     // console.log(formData);
-    setExpenses(expenseData)
+    async function postExpenseApi(expenseDataObj) {
+      console.log(expenseDataObj)
+        const response = await fetch(`${LocalHost}/expense/expense-form`, {
+          method: 'POST',
+          body: JSON.stringify(expenseDataObj),
+          headers: {
+            'Content-Type':'application/json'
+          }
+        })
+        const data = await response.json();
+        console.log(data);
+    }
+    addExpense(expenseData)
+    postExpenseApi(expenseData);
   };
 
   return (

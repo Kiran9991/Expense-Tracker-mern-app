@@ -1,7 +1,21 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
-// const user = { isLogin: false, setIsLogin: ()=>{} };
+const user = { isLogin: false, setIsLogin: () => {} };
 
-const userContext = createContext();
+export const UserContext = createContext(user);
 
-export default userContext;
+const UserContextProvider = (props) => {
+  const [isLogin, setIsLogin] = useState(false);
+
+  const setAuth = () => {
+    setIsLogin((prev) => !prev);
+  };
+
+  const user = { isLogin: isLogin, setIsLogin: setAuth };
+
+  return (
+    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+  );
+};
+
+export default UserContextProvider;

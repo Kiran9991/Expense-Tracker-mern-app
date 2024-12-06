@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup symbol.png";
-import userContext from "../../store/user-context";
+import { UserContext } from "../../store/user-context";
+import { LocalHost } from "../../App";
 
 const Signin = () => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
-  const { setIsLogin } = useContext(userContext);
+  const { setIsLogin } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitFormHandler = async (e) => {
@@ -23,7 +24,7 @@ const Signin = () => {
 
     if (password.length >= 6) {
       try {
-        const response = await fetch("http://localhost:3000/user/signin", {
+        const response = await fetch(`${LocalHost}/user/signin`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

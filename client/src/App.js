@@ -19,9 +19,23 @@ function App() {
   useEffect(() => {
     if (token) setIsLogin();
     async function getExpensesApi() {
-      const response = await fetch(`${LocalHost}/expense/expenses`);
-      const data = await response.json();
-      addExpense(data.expensesArr);
+      try {
+        const response = await fetch(`${LocalHost}/expense/expenses`, {
+          method:'GET',
+          headers: {
+            'Content-Type':'Application/json',
+            'Authorization':`${token}`
+          }
+        });
+        const data = await response.json();
+        if(!response.ok) {
+          throw Error(data.message)
+        }
+        addExpense(data.expensesArr);
+      }catch(error) {
+        console.log(error);
+        alert(error.message)
+      }
     }
     // const output = getExpensesApi();
     // addExpense(output);

@@ -14,10 +14,10 @@ const postExpense = async(req, res) => {
 }
 
 const getExpenses = async(req, res) => {
-    // const { id } = req.body;
+    const user = req.user;
     try {
         const expensesArr = await Expense.findAll();
-
+        console.log(user)
         res.status(201).json({ expensesArr });
     } catch(error) {
         console.log(error, 'Internal Server Error!')

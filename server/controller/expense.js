@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const Expense = require('../models/expense');
 
 const postExpense = async(req, res) => {
@@ -6,21 +7,31 @@ const postExpense = async(req, res) => {
     try {
         const expenseObj = await Expense.create({ expense, amount, description, category });
 
-        res.status(201).json({ message: 'Successfully add form data', expenseObj})
+        res.status(201).json({ message: 'Successfully add form data', expenseObj })
     }catch(error) {
         console.log(error, `Internal Server Error`);
     }
 }
 
-const deleteExpense = async(req, res) => {
-    const obj = req.params;
-    console.log('>>>', obj);
+const getExpenses = async(req, res) => {
+    // const { id } = req.body;
     try {
-        const response = await Expense.findByPk({ where: { id: obj }});
-        console.log('response',response);
-        const result = await Expense.destroy(response)
-        console.log( 'result',result);
-        res.status(200).json({ message: 'Deleted the Expense!' })
+        const expensesArr = await Expense.findAll();
+
+        res.status(201).json({ expensesArr });
+    } catch(error) {
+        console.log(error, 'Internal Server Error!')
+    }
+}
+
+const deleteExpense = async(req, res) => {
+    const { id } = req.params;
+    try {
+        const singleExpense = await Expense.findByPk(id);
+        
+        const result = await singleExpense.destroy();
+
+        res.status(200).json({ message: 'Deleted the Expense!', result });
     }catch(error) {
         console.log(error, 'Internal Server Error!');
     }
@@ -28,5 +39,6 @@ const deleteExpense = async(req, res) => {
 
 module.exports = {
     postExpense, 
+    getExpenses,
     deleteExpense,
 };

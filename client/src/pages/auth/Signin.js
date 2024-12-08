@@ -35,7 +35,7 @@ const Signin = () => {
         if (!response.ok) throw new Error(message);
         localStorage.setItem("token", token);
         setIsLogin();
-        navigate('/home')
+        navigate('/expense/form')
         // prop.setAuth();
         alert(message);
       } catch (error) {

@@ -8,12 +8,16 @@ const ExpenseContextProvider = (props) => {
   const [expenses, setExpense] = useState([]);
 
   const addExpenseHandler = (expense) => {
-    setExpense((prevArr) => [...prevArr, expense]);
+    if(Array.isArray(expense)) {
+      setExpense((prevArr) => [...prevArr, ...expense]);
+    }else {
+      setExpense((prevArr) => [...prevArr, expense]);
+    }
   };
 
   const deleteExpenseHandler = (id) => {
     setExpense((prevArr) => {
-      const newArr = prevArr.filter((ele) => ele.expense !== id);
+      const newArr = prevArr.filter((ele) => ele.id !== id);
       return newArr;
     });
   };

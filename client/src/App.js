@@ -14,10 +14,10 @@ function App() {
   const token = localStorage.getItem("token");
   const { isLogin, setIsLogin } = useContext(UserContext);
   const { expenses, addExpense } = useContext(expenseContext);
-  // console.log(expenses)
 
   useEffect(() => {
-    if (token) setIsLogin();
+    if(!token) return;
+    setIsLogin();
     async function getExpensesApi() {
       try {
         const response = await fetch(`${LocalHost}/expense/expenses`, {
@@ -31,10 +31,11 @@ function App() {
         if(!response.ok) {
           throw Error(data.message)
         }
+        console.log(data.expensesArr)
         addExpense(data.expensesArr);
       }catch(error) {
-        console.log(error);
-        alert(error.message)
+        console.log(error.message);
+        // alert(error.message)
       }
     }
     // const output = getExpensesApi();

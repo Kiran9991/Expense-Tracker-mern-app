@@ -43,8 +43,7 @@ const Signup = (prop) => {
         const message = await response.json();
         if(!response.ok) throw new Error(message.message);
         alert(message.message);
-        // window.location.href = '/signin';
-        navigate('/signin')
+        navigate('/sign-in')
       } catch(error) {
         alert(error)
       }
@@ -101,7 +100,7 @@ const Signup = (prop) => {
 
           <div className={styles.signInText}>
             Already signed up?{" "}
-            <Link to={"/signin"} className={styles.signInLink}>Sign in</Link>
+            <Link to={"/sign-in"} className={styles.signInLink}>Sign in</Link>
           </div>
         </form>
       </div>

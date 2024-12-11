@@ -2,21 +2,24 @@ nav {
   display: flex;
   background-color: rgb(18, 4, 39);
   color: white;
-  justify-content: space-between;
+  height: 54px;
 }
 
 .navItemsLeftContainer {
   display: flex;
-  justify-content: flex-start;
-  padding: 15px;
+  padding: 15px 10px;
   cursor: pointer;
+  flex: 2 1;
+  font-size: 18px;
+  gap: 10px;
 }
 
 .navItemsRightContainer {
   display: flex;
   justify-content: flex-end;
   cursor: default;
-  padding: 10px;
+  padding: 0px;
+  flex: 3;
 }
 
 .navRightItem {
@@ -26,29 +29,29 @@ nav {
 }
 
 .navLeftItem {
-  padding-right: 10px;
   text-decoration: none;
   color: white;
 }
 
 .navRightItem:hover {
-    font-weight: bold;
-}
-
-.navLeftItem:hover {
   font-weight: bold;
 }
 
-.navBtn {
-    padding: 9px;
-    border-radius: 10px;
-    background-color: blueviolet;
-    border: none;
-    color: white;
-    font-weight: bold;
+.navLeftItem:hover {
+  color: #e3a4a4;
 }
 
-.navBtn:hover {
-    background-color: rgb(74, 19, 126);
-    cursor: pointer;
+.navBtn {
+  height: 27px;
+  width: 27px;
+  cursor: pointer;
+  margin: 14px;
+}
+
+.userNameText {
+  background-color: #8131cb;
+    margin: 10px 0px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: auto;
 }

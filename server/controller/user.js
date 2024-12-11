@@ -36,17 +36,20 @@ const signin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const userName = await User.findOne({ where: { username: email } });
+    const { dataValues } = await User.findOne({ where: { username: email } });
 
-    if (!userName) {
+    if (!dataValues) {
       return res.status(404).json({ message: "User doesn't Exist!" });
     }
 
-    const result = await bcrypt.compare(password, userName.dataValues.password)
+    const result = await bcrypt.compare(password, dataValues.password)
 
     if(!result) return res.status(401).json({ message: "Password doesn't Matched!" })
 
-    const token = jwt.sign(req.body, 'kiran');
+    const userObj = {
+      userId: dataValues.id, username: dataValues.username
+    }
+    const token = jwt.sign(userObj, 'kiran');
 
     res.status(200).json({ message: `Successfully sign in ${email}`, token})
   } catch (error) {

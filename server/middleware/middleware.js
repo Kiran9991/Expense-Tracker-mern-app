@@ -8,6 +8,7 @@ const middleware = async(req, res, next) => {
             throw new Error('Token is missing!')
         }
         const { email } = jwt.decode(token);
+        // console.log('from middle jwt token>>>',jwt.decode(token))
         const user = await User.findOne({ where:{ username: email } });
         if(!user) {
             throw new Error(`Unauthorized! or Token is Invalid!`)

@@ -29,17 +29,23 @@ export default function Form() {
     };
     // console.log(formData);
     async function postExpenseApi(expenseDataObj) {
-      console.log(expenseDataObj);
-      const response = await fetch(`${LocalHost}/expense/expense-form`, {
-        method: "POST",
-        body: JSON.stringify(expenseDataObj),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log(data);
-      addExpense(data.expenseObj);
+      const token = localStorage.getItem("token");
+      try {
+        const response = await fetch(`${LocalHost}/expense/expense-form`, {
+          method: "POST",
+          body: JSON.stringify(expenseDataObj),
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization':`${token}`
+          },
+        });
+        const data = await response.json();
+        if(!response.ok) throw Error(data.message);
+        addExpense(data.expenseObj);
+      }catch(error) {
+        console.log(error);
+        alert(`Error: ${error.message}`)
+      }
     }
     postExpenseApi(expenseData);
   };

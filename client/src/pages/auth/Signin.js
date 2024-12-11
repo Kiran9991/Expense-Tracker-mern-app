@@ -85,7 +85,7 @@ const Signin = () => {
 
           <div className={styles.signInText}>
             New User? Signup here{" "}
-            <Link to={"/signup"} className={styles.signInLink}>
+            <Link to={"/sign-up"} className={styles.signInLink}>
               Sign up
             </Link>
           </div>

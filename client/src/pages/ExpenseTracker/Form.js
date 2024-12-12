@@ -53,7 +53,7 @@ export default function Form() {
   return (
     <div className={styles.formContainer}>
       <div className={styles.formTitle}>Expense Tracker Form</div>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit} typeof="submit">
         <div className={isWrap ? styles.inputFormBox : ''}>
           <label>Expense</label>
           <input
@@ -88,7 +88,7 @@ export default function Form() {
           </select>
         </div>
         <div>
-          <button onClick={wraphandler}>{content}</button>
+          <button type='button' onClick={wraphandler}>{content}</button>
         </div>
         <div className={isWrap ? styles.inputFormBox : ''}>
           <button type="submit">Add Expense</button>

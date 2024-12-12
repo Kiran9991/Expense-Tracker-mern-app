@@ -34,11 +34,12 @@ const Signin = () => {
         const { message, token } = await response.json();
         if (!response.ok) throw new Error(message);
         localStorage.setItem("token", token);
-        setIsLogin();
+        setIsLogin(true);
         navigate('/expense/form')
         // prop.setAuth();
         alert(message);
       } catch (error) {
+        console.log(error)
         alert(error);
       }
 

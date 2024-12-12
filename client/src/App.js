@@ -15,25 +15,27 @@ function App() {
   const { isLogin, setIsLogin } = useContext(UserContext);
   const { expenses, addExpense } = useContext(expenseContext);
 
+
   useEffect(() => {
-    if(!token) return;
-    setIsLogin();
+    if (!token) return;
+    setIsLogin(true) 
     async function getExpensesApi() {
       try {
         const response = await fetch(`${LocalHost}/expense/expenses`, {
-          method:'GET',
+          method: "GET",
           headers: {
-            'Content-Type':'Application/json',
-            'Authorization':`${token}`
-          }
+            "Content-Type": "Application/json",
+            "Authorization": `${token}`,
+          },
         });
         const data = await response.json();
-        if(!response.ok) {
-          throw Error(data.message)
+        if (!response.ok) {
+          throw Error(data.message);
         }
-        console.log(data.expensesArr)
+        // console.log(token);
         addExpense(data.expensesArr);
-      }catch(error) {
+        console.log('expenses added')
+      } catch (error) {
         console.log(error.message);
         // alert(error.message)
       }
@@ -42,7 +44,7 @@ function App() {
     // addExpense(output);
     // console.log(output);
     getExpensesApi();
-  }, []);
+  }, [token]);
 
   return (
     <>

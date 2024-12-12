@@ -6,6 +6,7 @@ import { LocalHost } from "../../App";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);
+  const token = localStorage.getItem('token');
 
   let content = (
     <div className={styles.listNoItem}>No Expenses! Add Expenses here</div>
@@ -15,6 +16,9 @@ export default function ListExpenses() {
     try {
       const response = await fetch(`${LocalHost}/expense/${id}`, {
         method:'DELETE',
+        headers: {
+          'Authorization':`${token}`
+        }
       })
       const data = await response.json();
       console.log(data);

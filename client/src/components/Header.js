@@ -4,6 +4,7 @@ import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import SignoutSymbol from "../images/switch symbol.png";
 import signinSymbol from "../images/sign in 2.png";
+import { expenseContext } from "../store/expense-context";
 
 function decodeJWT(token) {
   if(!token) return;
@@ -21,10 +22,12 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const { username } = decodeJWT(token) || '';
+  const { deleteAllExpense } = useContext(expenseContext);
 
   const signoutHandler = () => {
     localStorage.removeItem("token");
-    setIsLogin();
+    deleteAllExpense();
+    setIsLogin(false);
     navigate("/sign-in");
   };
 

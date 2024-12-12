@@ -38,13 +38,11 @@ const signin = async (req, res) => {
 
     const { dataValues } = await User.findOne({ where: { username: email } });
 
-    if (!dataValues) {
-      return res.status(404).json({ message: "User doesn't Exist!" });
-    }
+    if (!dataValues) throw new Error(`User doesn't Exist!`)
 
     const result = await bcrypt.compare(password, dataValues.password)
 
-    if(!result) return res.status(401).json({ message: "Password doesn't Matched!" })
+    if(!result) throw new Error("Password doesn't Matched!")
 
     const userObj = {
       userId: dataValues.id, username: dataValues.username
@@ -53,7 +51,7 @@ const signin = async (req, res) => {
 
     res.status(200).json({ message: `Successfully sign in ${email}`, token})
   } catch (error) {
-    console.log(error, "Internal Server Error!");
+    res.status(401).json({ error: `${error.message}`})
   }
 };
 

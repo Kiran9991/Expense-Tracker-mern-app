@@ -1,6 +1,11 @@
 import { createContext, useState } from "react";
 
-const obj = { expenses: [], addExpense: () => {}, deleteExpense: () => {} };
+const obj = { 
+  expenses: [], 
+  addExpense: () => {}, 
+  deleteExpense: () => {},
+  deleteAllExpense: () => {}
+};
 
 export const expenseContext = createContext(obj);
 
@@ -9,7 +14,7 @@ const ExpenseContextProvider = (props) => {
 
   const addExpenseHandler = (expense) => {
     if(Array.isArray(expense)) {
-      setExpense((prevArr) => [...prevArr, ...expense]);
+      setExpense([...expense]);
     }else {
       setExpense((prevArr) => [...prevArr, expense]);
     }
@@ -22,12 +27,17 @@ const ExpenseContextProvider = (props) => {
     });
   };
 
+  const deleteAllExpenseHandler = () => {
+    setExpense([]);
+  }
+
   const editExpenseHandler = (id) => {};
 
   const expenseObj = {
     expenses: expenses,
     addExpense: addExpenseHandler,
     deleteExpense: deleteExpenseHandler,
+    deleteAllExpense: deleteAllExpenseHandler
   };
 
   return (

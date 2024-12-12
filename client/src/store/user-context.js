@@ -7,8 +7,8 @@ export const UserContext = createContext(user);
 const UserContextProvider = (props) => {
   const [isLogin, setIsLogin] = useState(false);
 
-  const setAuth = () => {
-    setIsLogin((prev) => !prev);
+  const setAuth = (val) => {
+    setIsLogin(val);
   };
 
   const user = { isLogin: isLogin, setIsLogin: setAuth };

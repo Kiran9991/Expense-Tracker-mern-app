@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
 import styles from "./ListItems.module.css";
-import { expenseContext } from "../../store/expense-context";
-import { LocalHost } from "../../App";
+import { expenseContext } from "../../../store/expense-context";
+import { LocalHost } from "../../../App";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);

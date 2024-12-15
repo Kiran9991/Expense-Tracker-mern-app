@@ -4,11 +4,12 @@
 .formContainer {
     width: 600px;
     margin: auto;
-    background-color: rgb(61, 13, 105);
-    color: white;
+    background: linear-gradient(to bottom, #bba4c7, #ddd8e4);
+    color: black;
     padding: 20px;
     margin-top: 10px;
     border-radius: 15px;
+    font-weight: 400;
 }
 
 .form {

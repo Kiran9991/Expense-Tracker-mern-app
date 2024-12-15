@@ -6,10 +6,11 @@
 
 .listItem {
     padding: 15px;
-    background-color: #6314ab;
+    background: linear-gradient(to right, #a375c2, #ece8ef);
     border-radius: 5px;
     margin: 5px 0px;
-    color: white;
+    color: black;
+    font-weight: 400;
     display: flex;
     justify-content: space-between;
 }

@@ -1,8 +1,8 @@
 nav {
   display: flex;
-  background-color: rgb(18, 4, 39);
-  color: white;
-  height: 54px;
+  background-color: white;
+  color: black;
+  height: 70px;
 }
 
 .navItemsLeftContainer {
@@ -25,12 +25,15 @@ nav {
 .navRightItem {
   padding-left: 10px;
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .navLeftItem {
   text-decoration: none;
-  color: white;
+  color: lightgray;
+  font-family: bold;
+  padding: 10px 0px;
+  font-family: sans-serif;
 }
 
 .navRightItem:hover {
@@ -38,39 +41,47 @@ nav {
 }
 
 .navLeftItem:hover {
-  color: #e3a4a4;
+  color: black;
 }
 
 .navBtn {
-  height: 27px;
-  width: 27px;
+  height: 40px;
+  width: 40px;
   cursor: pointer;
   margin: 14px;
 }
 
 .userNameText {
-  background-color: #8131cb;
+  /* background-color: #8131cb; */
   margin: 10px 0px;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 12px 10px;
   width: auto;
+  border: solid 0.5px #c9bebe;
+  font-weight: 400;
 }
 
 .premiumElement {
   width: auto;
   margin: 10px;
   padding: 5px 10px;
-  background: gold;
+  background: #f3f2e6;
   border-radius: 5px;
   color: black;
   pointer-events: none;
+  display: flex;
+  gap: 10px;
 }
 
 .nonPremiumElement {
   width: auto;
   margin: 10px;
   padding: 5px 10px;
-  background: #169a11;
+  background: #f3f2e6;
   border-radius: 5px;
-  color: white;
+  color: black;
+}
+
+.expenseSymbol {
+  height: 40px;
 }

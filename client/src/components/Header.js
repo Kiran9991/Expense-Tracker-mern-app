@@ -2,8 +2,12 @@ import { useContext } from "react";
 import { UserContext } from "../store/user-context";
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
+
 import SignoutSymbol from "../images/switch symbol.png";
 import signinSymbol from "../images/sign in 2.png";
+import expenseSymbol from '../images/app symbol.png';
+import premiumSymbol from '../images/premium symbol.png';
+
 import { expenseContext } from "../store/expense-context";
 import { LocalHost } from "../App";
 
@@ -67,11 +71,25 @@ const Header = () => {
               Home
             </Link>
           )}
+
+          {isLogin && (
+            <Link to={"/expense/form"}>
+            <img className={styles.expenseSymbol} src={expenseSymbol} alt="Expense Tracker symbol"/>
+            </Link>
+          )}
+
           {isLogin && (
             <Link to={"/expense/form"} className={styles.navLeftItem}>
               Expense Tracker
             </Link>
           )}
+
+          {isLogin && (
+            <Link to={"/expense/list"} className={styles.navLeftItem}>
+             List
+            </Link>
+          )}
+
           {isLogin && (
             <Link to={"/about-us"} className={styles.navLeftItem}>
               About Us
@@ -87,7 +105,7 @@ const Header = () => {
                 isPremium ? styles.premiumElement : styles.nonPremiumElement
               }
             >
-              {isPremium ? "Premium" : "Buy Premium"}
+             <img style={{height:'40px'}} src={premiumSymbol} alt="premium"/><p style={{padding:'10px 0px'}}>{isPremium ? "Premium" : "Buy Premium"}</p> 
             </div>
           )}
 

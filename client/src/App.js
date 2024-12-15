@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import ExpenseTracker from "./pages/ExpenseTracker/ExpenseTracker";
 import { UserContext } from "./store/user-context";
 import { expenseContext } from "./store/expense-context";
+import ListExpenses from "./pages/ExpenseTracker/ListItems/ListExpenses";
 export const LocalHost = `http://localhost:4000`;
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         {!isLogin && <Route path="/home" element={<Home />} />}
         {isLogin && <Route path="/expense/form" element={<ExpenseTracker />} />}
+        {isLogin && <Route path="/expense/list" element={<ListExpenses/>}/>}
         {!isLogin && <Route path="/sign-in" element={<Signin />} />}
         {!isLogin && <Route path="/sign-up" element={<Signup />} />}
         <Route path="*" element={<h2>404: Page Not Found</h2>} />

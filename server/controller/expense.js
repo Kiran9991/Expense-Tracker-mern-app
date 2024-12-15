@@ -1,4 +1,5 @@
 const Expense = require("../models/expense");
+const User = require('../models/user');
 
 const postExpense = async (req, res) => {
   const { expense, amount, description, category } = req.body;
@@ -47,8 +48,32 @@ const deleteExpense = async (req, res) => {
   }
 };
 
+const buyPremium = async (req, res) => {
+  const { userId } = req.user;
+  
+  try {
+    const userObjFromDb = await User.findByPk(userId);
+
+    if(!userObjFromDb) throw new Error('Failed to find user Obj')
+
+    userObjFromDb.isPremium = true;
+    await userObjFromDb.save()
+
+    const response = userObjFromDb.isPremium;
+
+    // const response = await User.update({ isPremium: false }, { where: { id: userId }})
+    // console.log(response)
+    // if(!response) throw new Error('Failed to update isPremium')
+    
+    res.status(201).json({ message: 'Successfully buyed the premium', response })
+  }catch(error) {
+    res.status(401).json({ message: `${error}`})
+  }
+}
+
 module.exports = {
   postExpense,
   getExpenses,
   deleteExpense,
+  buyPremium
 };

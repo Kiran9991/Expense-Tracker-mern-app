@@ -11,5 +11,6 @@ router.get('/expenses', middleware, expenseController.getExpenses);
 
 router.delete('/:id',middleware, expenseController.deleteExpense);
 
+router.post('/buy-premium', middleware, expenseController.buyPremium);
 
 module.exports = router;

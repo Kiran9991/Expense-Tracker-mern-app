@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Signup from "./pages/auth/Signup";
 import Signin from "./pages/auth/Signin";
-import Header from "./components/Header";
+import Header, { decodeJWT } from "./components/Header";
 import Home from "./pages/Home";
 import ExpenseTracker from "./pages/ExpenseTracker/ExpenseTracker";
 import { UserContext } from "./store/user-context";
@@ -12,13 +12,14 @@ export const LocalHost = `http://localhost:4000`;
 
 function App() {
   const token = localStorage.getItem("token");
-  const { isLogin, setIsLogin } = useContext(UserContext);
+  const { isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
   const { expenses, addExpense } = useContext(expenseContext);
-
+  const { isPremium } = decodeJWT(token) || '';
 
   useEffect(() => {
     if (!token) return;
     setIsLogin(true) 
+    if(isPremium || localStorage.getItem('isPremium')) setIsPremium(true);
     async function getExpensesApi() {
       try {
         const response = await fetch(`${LocalHost}/expense/expenses`, {

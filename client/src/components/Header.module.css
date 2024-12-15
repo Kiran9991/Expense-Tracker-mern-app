@@ -50,8 +50,27 @@ nav {
 
 .userNameText {
   background-color: #8131cb;
-    margin: 10px 0px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    width: auto;
+  margin: 10px 0px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: auto;
+}
+
+.premiumElement {
+  width: auto;
+  margin: 10px;
+  padding: 5px 10px;
+  background: gold;
+  border-radius: 5px;
+  color: black;
+  pointer-events: none;
+}
+
+.nonPremiumElement {
+  width: auto;
+  margin: 10px;
+  padding: 5px 10px;
+  background: #169a11;
+  border-radius: 5px;
+  color: white;
 }

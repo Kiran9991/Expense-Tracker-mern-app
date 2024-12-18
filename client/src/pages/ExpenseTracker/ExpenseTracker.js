@@ -1,13 +1,13 @@
 import React from "react";
 
-import Form from "./Form";
+import Form from "./FormInput/Form";
 import ListExpenses from "./ListItems/ListExpenses";
 
 export default function ExpenseTracker() {
   return (
     <div>
       <Form />
-      {/* <ListExpenses /> */}
+      <ListExpenses />  
     </div>
   );
 }

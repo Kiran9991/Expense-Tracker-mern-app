@@ -13,6 +13,7 @@ const ExpenseContextProvider = (props) => {
   const [expenses, setExpense] = useState([]);
 
   const addExpenseHandler = (expense) => {
+    // console.log(expense)
     if(Array.isArray(expense)) {
       setExpense([...expense]);
     }else {

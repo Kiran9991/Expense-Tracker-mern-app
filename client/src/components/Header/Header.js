@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import { UserContext } from "../store/user-context";
+import { UserContext } from "../../store/user-context";
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
-import SignoutSymbol from "../images/switch symbol.png";
-import signinSymbol from "../images/sign in 2.png";
-import expenseSymbol from '../images/app symbol.png';
-import premiumSymbol from '../images/premium symbol.png';
+import SignoutSymbol from '../../images/switch symbol.png';
+import signinSymbol from "../../images/sign in 2.png";
+import expenseSymbol from '../../images/app symbol.png';
+import premiumSymbol from '../../images/premium symbol.png';
 
-import { expenseContext } from "../store/expense-context";
-import { LocalHost } from "../App";
+import { expenseContext } from "../../store/expense-context";
+import { LocalHost } from "../../App";
 
 export function decodeJWT(token) {
   if (!token) return;

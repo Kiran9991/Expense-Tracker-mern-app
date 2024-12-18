@@ -13,13 +13,14 @@ const postExpense = async (req, res) => {
       UserId:req.user.userId
     });
 
-    res.status(201).json({ message: "Successfully add form data", expenseObj });
+    res.status(201).json({ message: "Successfully added Expense", expenseObj });
   } catch (error) {
     console.log(error, `Internal Server Error`);
     res.status(501).json({ message: error });
   }
 };
 
+// expense/expenses
 const getExpenses = async (req, res) => {
   const user = req.user;
   try {
@@ -35,6 +36,7 @@ const getExpenses = async (req, res) => {
   }
 };
 
+// expense/:id
 const deleteExpense = async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,7 +44,7 @@ const deleteExpense = async (req, res) => {
 
     const result = await singleExpense.destroy();
 
-    res.status(200).json({ message: "Deleted the Expense!", result });
+    res.status(200).json({ message: "Successfully Deleted the Expense!", result });
   } catch (error) {
     console.log(error, "Internal Server Error!");
   }

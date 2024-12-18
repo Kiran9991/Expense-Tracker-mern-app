@@ -1,7 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
 import styles from "./Form.module.css";
-import { expenseContext } from "../../store/expense-context";
-import { LocalHost } from "../../App";
+import { expenseContext } from "../../../store/expense-context";
+import { LocalHost } from "../../../App";
+import fetchApi from "../../../hook/fetchApi";
+import notify from "../../../hook/notify";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
@@ -19,7 +21,7 @@ export default function Form() {
   };
   // console.log(isWrap);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const expenseData = {
       expense: expenseRef.current.value,
@@ -27,27 +29,16 @@ export default function Form() {
       description: descriptionRef.current.value,
       category: categoryRef.current.value,
     };
-    // console.log(formData);
-    async function postExpenseApi(expenseDataObj) {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await fetch(`${LocalHost}/expense/expense-form`, {
-          method: "POST",
-          body: JSON.stringify(expenseDataObj),
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization':`${token}`
-          },
-        });
-        const data = await response.json();
-        if(!response.ok) throw Error(data.message);
-        addExpense(data.expenseObj);
-      }catch(error) {
-        console.log(error);
-        alert(`Error: ${error.message}`)
-      }
+
+    try {
+      const response = await fetchApi(`${LocalHost}/expense/expense-form`, 'POST', expenseData);
+      const json = await response.json();
+      if(!response.ok) throw new Error(json.message);
+      addExpense(json.expenseObj)
+      notify(json.message, 'success')
+    }catch(error) {
+      notify(error.message, 'error')
     }
-    postExpenseApi(expenseData);
   };
 
   return (

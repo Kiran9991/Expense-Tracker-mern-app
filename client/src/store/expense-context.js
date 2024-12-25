@@ -1,23 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const obj = { 
-  expenses: [], 
+  expenses: [],
+  page: parseInt(localStorage.getItem('page')), 
   addExpense: () => {}, 
   deleteExpense: () => {},
-  deleteAllExpense: () => {}
+  deleteAllExpense: () => {},
+  prevPage: () => {},
+  nextPage: () => {},
 };
 
 export const expenseContext = createContext(obj);
 
 const ExpenseContextProvider = (props) => {
   const [expenses, setExpense] = useState([]);
-
+  const [page, setPage] = useState(obj.page);
+  
   const addExpenseHandler = (expense) => {
     // console.log(expense)
     if(Array.isArray(expense)) {
       setExpense([...expense]);
     }else {
-      setExpense((prevArr) => [...prevArr, expense]);
+      setExpense((prevArr) => [ expense, ...prevArr ]);
     }
   };
 
@@ -32,13 +37,25 @@ const ExpenseContextProvider = (props) => {
     setExpense([]);
   }
 
-  const editExpenseHandler = (id) => {};
+  const prevPageUpdateHandler = () => {
+    page > 1 && setPage(prev => prev-1);
+    page > 1 && localStorage.setItem('page', page-1);
+  }
+
+  const nextPageUpdateHandler = () => {
+    // console.log(expenses.length);
+    setPage(prev => expenses.length > 0 ? prev+1 : 1);
+    localStorage.setItem('page', expenses.length > 0 ? page+1 : 1);
+  }
 
   const expenseObj = {
     expenses: expenses,
+    page: page,
     addExpense: addExpenseHandler,
     deleteExpense: deleteExpenseHandler,
-    deleteAllExpense: deleteAllExpenseHandler
+    deleteAllExpense: deleteAllExpenseHandler,
+    prevPage: prevPageUpdateHandler,
+    nextPage: nextPageUpdateHandler
   };
 
   return (

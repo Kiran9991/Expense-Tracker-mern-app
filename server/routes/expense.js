@@ -13,4 +13,6 @@ router.delete('/:id',middleware, expenseController.deleteExpense);
 
 router.post('/buy-premium', middleware, expenseController.buyPremium);
 
+// router.get('/', middleware, expenseController.pagination);
+
 module.exports = router;

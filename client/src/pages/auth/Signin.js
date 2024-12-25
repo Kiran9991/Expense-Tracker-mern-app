@@ -36,6 +36,7 @@ const Signin = () => {
         localStorage.setItem("token", token);
         setIsLogin(true);
         navigate('/expense/form')
+        localStorage.setItem('page', 1);
         // prop.setAuth();
         alert(message);
       } catch (error) {

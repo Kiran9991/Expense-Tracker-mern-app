@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../../store/user-context";
 import styles from "./Header.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import SignoutSymbol from '../../images/switch symbol.png';
 import signinSymbol from "../../images/sign in 2.png";
@@ -26,16 +26,18 @@ export function decodeJWT(token) {
 }
 
 const Header = () => {
-  const { isLogin, setIsLogin, isPremium, setIsPremium } =
-    useContext(UserContext);
+  const { isLogin, setIsLogin, isPremium, setIsPremium } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { page } = useContext(expenseContext);
   const token = localStorage.getItem("token");
   const { username } = decodeJWT(token) || "";
   const { deleteAllExpense } = useContext(expenseContext);
+  // navigate(`/expense/expenses/${page}`)
+  // console.log(location.pathname, page)  
 
   const signoutHandler = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem('isPremium');
+    localStorage.clear();
     deleteAllExpense();
     setIsLogin(false);
     setIsPremium(false);
@@ -85,7 +87,7 @@ const Header = () => {
           )}
 
           {isLogin && (
-            <Link to={"/expense/list"} className={styles.navLeftItem}>
+            <Link to={`/expense/expenses/${page}`} className={styles.navLeftItem}>
              List
             </Link>
           )}

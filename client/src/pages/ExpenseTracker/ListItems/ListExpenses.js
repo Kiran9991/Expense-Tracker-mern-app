@@ -5,6 +5,7 @@ import { LocalHost } from "../../../App";
 import notify from "../../../hook/notify";
 import fetchApi from "../../../hook/fetchApi";
 import styles from "./ListItems.module.css";
+import Pagination from "./Pagination";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);
@@ -17,7 +18,6 @@ export default function ListExpenses() {
     async function deleteExpenseApi(id) {
       const response = await fetchApi(`${LocalHost}/expense/${id}`, 'Delete');
       const data = await response.json();
-      console.log(response, 'call');
       notify(data.message, 'success');
     }
     deleteExpenseApi(id);
@@ -44,5 +44,8 @@ export default function ListExpenses() {
   }
 
 
-  return <div className={styles.listItemsContainer}>{content}</div>;
+  return <div className={styles.listItemsContainer}>
+    {content}
+    <Pagination/>
+    </div>;
 }

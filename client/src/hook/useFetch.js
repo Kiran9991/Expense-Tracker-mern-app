@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import fetchApi from './fetchApi';
 import { token } from '../App';
+import { expenseContext } from '../store/expense-context';
 
 export default function useFetch(url, method) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const { ex} = useContext(expenseContext);
 
   useEffect(() => {
     if(!token) return;
@@ -19,7 +21,6 @@ export default function useFetch(url, method) {
           throw new Error(json.message);}
         setData(json);
       } catch(error) {
-        console.log(error)
         // console.log(error.message);
         setError(error);
       }

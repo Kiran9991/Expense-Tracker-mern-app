@@ -4,6 +4,7 @@ import { expenseContext } from "../../../store/expense-context";
 import { LocalHost } from "../../../App";
 import fetchApi from "../../../hook/fetchApi";
 import notify from "../../../hook/notify";
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
@@ -12,6 +13,7 @@ export default function Form() {
   const descriptionRef = useRef(null);
   const categoryRef = useRef(null);
   const { addExpense } = useContext(expenseContext);
+  const navigate = useNavigate();
 
   let content = isWrap ? "Show Form" : "Hide Form";
 
@@ -31,13 +33,17 @@ export default function Form() {
     };
 
     try {
-      const response = await fetchApi(`${LocalHost}/expense/expense-form`, 'POST', expenseData);
+      const response = await fetchApi(
+        `${LocalHost}/expense/expense-form`,
+        "POST",
+        expenseData
+      );
       const json = await response.json();
-      if(!response.ok) throw new Error(json.message);
-      addExpense(json.expenseObj)
-      notify(json.message, 'success')
-    }catch(error) {
-      notify(error.message, 'error')
+      if (!response.ok) throw new Error(json.message);
+      addExpense(json.expenseObj, 1);
+      notify(json.message, "success");
+    } catch (error) {
+      notify(error.message, "error");
     }
   };
 
@@ -45,7 +51,7 @@ export default function Form() {
     <div className={styles.formContainer}>
       <div className={styles.formTitle}>Expense Tracker Form</div>
       <form className={styles.form} onSubmit={handleSubmit} typeof="submit">
-        <div className={isWrap ? styles.inputFormBox : ''}>
+        <div className={isWrap ? styles.inputFormBox : ""}>
           <label>Expense</label>
           <input
             type="text"
@@ -53,7 +59,7 @@ export default function Form() {
             ref={expenseRef}
           />
         </div>
-        <div className={isWrap ? styles.inputFormBox : ''}>
+        <div className={isWrap ? styles.inputFormBox : ""}>
           <label>Amount</label>
           <input
             type="number"
@@ -61,7 +67,7 @@ export default function Form() {
             ref={amountRef}
           />
         </div>
-        <div className={isWrap ? styles.inputFormBox : ''}>
+        <div className={isWrap ? styles.inputFormBox : ""}>
           <label>Description</label>
           <input
             type="text"
@@ -69,7 +75,7 @@ export default function Form() {
             ref={descriptionRef}
           />
         </div>
-        <div className={isWrap ? styles.inputFormBox : ''}>
+        <div className={isWrap ? styles.inputFormBox : ""}>
           <label>Category</label>
           <select id="category" className={styles.category} ref={categoryRef}>
             <option value="electricity">Electricity</option>
@@ -79,9 +85,11 @@ export default function Form() {
           </select>
         </div>
         <div>
-          <button type='button' onClick={wraphandler}>{content}</button>
+          <button type="button" onClick={wraphandler}>
+            {content}
+          </button>
         </div>
-        <div className={isWrap ? styles.inputFormBox : ''}>
+        <div className={isWrap ? styles.inputFormBox : ""}>
           <button type="submit">Add Expense</button>
         </div>
       </form>

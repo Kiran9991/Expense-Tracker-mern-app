@@ -1,0 +1,24 @@
+.dashboardContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 30px;
+    gap: 30px;
+}
+
+.dashboardCards {
+    background-color: #eaeff1;
+    border-radius: 5px;
+    height: 17rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /* width: 46opx; */
+}
+
+.card1Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    font-size: 25px;
+}
+

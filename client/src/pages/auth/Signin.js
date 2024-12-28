@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
-import signupIcon from "../../images/signup symbol.png";
+import signupIcon from "../../images/signup.png";
 import { UserContext } from "../../store/user-context";
 import { LocalHost } from "../../App";
 

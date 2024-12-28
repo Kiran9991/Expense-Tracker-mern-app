@@ -10,5 +10,7 @@ export default async function fetchApi(url, method, bodyObj) {
     },
     ...(bodyObj && { body: JSON.stringify(bodyObj) }),
   });
+  // let out = await response.json();
+  // console.log('req made')
   return response;
 }

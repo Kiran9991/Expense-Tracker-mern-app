@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
-import signupIcon from "../../images/signup symbol.png";
+import signupIcon from "../../images/signup.png";
 import { LocalHost } from "../../App";
 
 export const validatePassword = (password, confirmPassword) => {

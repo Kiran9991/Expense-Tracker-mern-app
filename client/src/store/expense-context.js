@@ -1,8 +1,9 @@
-import { createContext, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState } from "react";
 
 const obj = { 
   expenses: [],
+  totalExpenses: 0,
+  totalAmount:0,
   page: parseInt(localStorage.getItem('page')), 
   addExpense: () => {}, 
   deleteExpense: () => {},
@@ -16,13 +17,19 @@ export const expenseContext = createContext(obj);
 const ExpenseContextProvider = (props) => {
   const [expenses, setExpense] = useState([]);
   const [page, setPage] = useState(obj.page);
-  
-  const addExpenseHandler = (expense) => {
-    // console.log(expense)
+  const [total, setTotal] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  const addExpenseHandler = (expense, expenseAmount, noOfExpenses) => {
+  //  console.log(expenseAmount)
     if(Array.isArray(expense)) {
       setExpense([...expense]);
+      setTotal(parseInt(noOfExpenses));
+      setAmount(expenseAmount);
     }else {
       setExpense((prevArr) => [ expense, ...prevArr ]);
+      setTotal(prev => prev++);
+      setAmount(prev => prev += expense.amount);
     }
   };
 
@@ -51,6 +58,8 @@ const ExpenseContextProvider = (props) => {
   const expenseObj = {
     expenses: expenses,
     page: page,
+    totalExpenses: total,
+    totalAmount: amount, 
     addExpense: addExpenseHandler,
     deleteExpense: deleteExpenseHandler,
     deleteAllExpense: deleteAllExpenseHandler,

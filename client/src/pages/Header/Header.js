@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../../store/user-context";
 import styles from "./Header.module.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 
 import symbols from "../../images/Symbol";
 
@@ -20,11 +20,11 @@ const Header = () => {
   const { deleteAllExpense } = useContext(expenseContext);
 
   const signoutHandler = () => {
+    navigate("/sign-in");
     localStorage.clear();
     deleteAllExpense();
     setIsLogin(false);
     setIsPremium(false);
-    navigate("/sign-in");
   };
 
   const buyPremiumBtnHandler = async () => {
@@ -64,7 +64,7 @@ const Header = () => {
               alt="Expense Tracker symbol"
             />
           </Link>,
-          <Link to={"/dashboard"} className={styles.navLeftItem} key={Math.random()}>
+          <Link to={"/expense/dashboard"} className={styles.navLeftItem} key={Math.random()}>
           Dashboard
           </Link>,
           <Link to={"/expense/form"} className={styles.navLeftItem} key={Math.random()}>
@@ -73,7 +73,7 @@ const Header = () => {
           <Link to={`/expense/expenses/${page}`} className={styles.navLeftItem} key={Math.random()}>
             List
           </Link>,
-          <Link to={"/about-us"} className={styles.navLeftItem} key={Math.random()}>
+          <Link to={"/expense/about-us"} className={styles.navLeftItem} key={Math.random()}>
             About Us
           </Link>,
         ]}

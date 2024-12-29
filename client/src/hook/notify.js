@@ -1,4 +1,3 @@
-import React from "react";
 import { toast, Bounce } from "react-toastify";
 
 export default function notify(message, type) {

@@ -4,7 +4,7 @@ const User = require('../models/user');
 const middleware = async(req, res, next) => {
     try {
         const token = req.headers['authorization'];
-        console.log(token , '>>>>>')
+        // console.log(token , '>>>>>')
         if(!token) {
             throw new Error('Token is missing!')
         }

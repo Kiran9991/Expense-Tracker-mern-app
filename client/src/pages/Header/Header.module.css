@@ -80,6 +80,9 @@ nav {
   background: #f3f2e6;
   border-radius: 5px;
   color: black;
+  pointer-events: none;
+  display: flex;
+  gap: 10px;
 }
 
 .expenseSymbol {

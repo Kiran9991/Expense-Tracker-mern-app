@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 91vh;
+  height: 89vh;
   padding: 0 20px; /* Adds padding to adjust for smaller screens */
   background: url("../../images/backgroundimg.webp") no-repeat center
     center fixed;

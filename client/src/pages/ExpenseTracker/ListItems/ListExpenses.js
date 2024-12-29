@@ -6,17 +6,19 @@ import notify from "../../../hook/notify";
 import FetchApi from "../../../hook/FetchApi";
 import styles from "./ListItems.module.css";
 import Pagination from "./Pagination";
+import { UserContext } from "../../../store/user-context";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);
-  
+  const { token } = useContext(UserContext);
+
   let content = (
     <div className={styles.listNoItem}>No Expenses! Add Expenses here</div>
   );
   
   const deleteButtonHandler = (id) => {
     async function deleteExpenseApi(id) {
-      const response = await FetchApi(`${LocalHost}/expense/${id}`, 'Delete');
+      const response = await FetchApi(`${LocalHost}/expense/${id}`, 'Delete', token);
       const data = await response.json();
       notify(data.message, 'success');
     }

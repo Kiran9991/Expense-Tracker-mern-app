@@ -4,7 +4,7 @@ const obj = {
   expenses: [],
   totalExpenses: 0,
   totalAmount:0,
-  page: parseInt(localStorage.getItem('page')), 
+  page: parseInt(localStorage.getItem('page')) || 1, 
   addExpense: () => {}, 
   deleteExpense: () => {},
   deleteAllExpense: () => {},
@@ -19,6 +19,8 @@ const ExpenseContextProvider = (props) => {
   const [page, setPage] = useState(obj.page);
   const [total, setTotal] = useState(0);
   const [amount, setAmount] = useState(0);
+
+// console.log(expenses)
 
   const addExpenseHandler = (expense, expenseAmount, noOfExpenses) => {
   //  console.log(expenseAmount)

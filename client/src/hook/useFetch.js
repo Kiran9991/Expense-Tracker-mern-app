@@ -11,15 +11,14 @@ export default function useFetch(url, method) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     if(!token) return;
      async function getDataApi(url, method) {
       setLoading(true);
-      // console.log(decodeToken(token))
       try{
-        const response = await FetchApi(url, method);
+        const response = await FetchApi(url, method, token);
         const json = await response.json();
-        // console.log('api call')
         if(!response.ok) {
           throw new Error(json.message);}
         setData(json);
@@ -30,7 +29,6 @@ export default function useFetch(url, method) {
     }
     getDataApi(url, method);
     setLoading(false);
-    console.log('useEffect call')
   }, [token, url, method])
 
   return { data, loading, error, FetchApi }

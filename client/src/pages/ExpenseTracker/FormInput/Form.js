@@ -5,13 +5,16 @@ import { LocalHost } from "../../../App";
 import FetchApi from "../../../hook/FetchApi";
 import notify from "../../../hook/notify";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../store/user-context";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
-  const expenseRef = useRef(null);
-  const amountRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const categoryRef = useRef(null);
+  // const expenseRef = useRef(null);
+  // const amountRef = useRef(null);
+  // const descriptionRef = useRef(null);
+  // const categoryRef = useRef(null);
+  const { token } = useContext(UserContext);
+  const formRefs = useRef({ expense: null, amount:null, description: null, category: null })
   const { addExpense } = useContext(expenseContext);
   const navigate = useNavigate();
 
@@ -25,17 +28,19 @@ export default function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(formRefs)
     const expenseData = {
-      expense: expenseRef.current.value,
-      amount: amountRef.current.value,
-      description: descriptionRef.current.value,
-      category: categoryRef.current.value,
+      expense: formRefs.current.expense.value,
+      amount: formRefs.current.amount.value,
+      description: formRefs.current.description.value,
+      category: formRefs.current.category.value,
     };
 
     try {
       const response = await FetchApi(
         `${LocalHost}/expense/expense-form`,
         "POST",
+        token,
         expenseData
       );
       const json = await response.json();
@@ -56,7 +61,7 @@ export default function Form() {
           <input
             type="text"
             placeholder="Enter your Expense..."
-            ref={expenseRef}
+            ref={(ele) => formRefs.current.expense = ele}
           />
         </div>
         <div className={isWrap ? styles.inputFormBox : ""}>
@@ -64,7 +69,7 @@ export default function Form() {
           <input
             type="number"
             placeholder="Enter your amount..."
-            ref={amountRef}
+            ref={(el) => (formRefs.current.amount = el)}
           />
         </div>
         <div className={isWrap ? styles.inputFormBox : ""}>
@@ -72,12 +77,12 @@ export default function Form() {
           <input
             type="text"
             placeholder="Enter your Description..."
-            ref={descriptionRef}
+            ref={(el) => (formRefs.current.description = el)}
           />
         </div>
         <div className={isWrap ? styles.inputFormBox : ""}>
           <label>Category</label>
-          <select id="category" className={styles.category} ref={categoryRef}>
+          <select id="category" className={styles.category} ref={(el) => (formRefs.current.category = el)}>
             <option value="electricity">Electricity</option>
             <option value="travel">Travel</option>
             <option value="food">Food</option>

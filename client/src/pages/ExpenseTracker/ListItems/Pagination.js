@@ -20,7 +20,6 @@ export default function Pagination() {
       // console.log(page);
       // navigate(`/expense/expenses/${page}`)
       prevPage();
-
     }
 
   return (

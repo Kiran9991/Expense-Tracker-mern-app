@@ -1,13 +1,11 @@
 import React from "react";
 
-import Form from "./FormInput/Form";
-import ListExpenses from "./ListItems/ListExpenses";
+import { Outlet } from "react-router-dom";
 
 export default function ExpenseTracker() {
   return (
     <div>
-      <Form />
-      <ListExpenses />  
+      <Outlet/>
     </div>
   );
 }

@@ -17,10 +17,7 @@ const UserContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
 
   const updateToken = (val) => {
-    // console.log(val)
-    // console.log(token);
     setToken(val);
-    // console.log(token);
   } 
 
   const setAuth = (val) => {

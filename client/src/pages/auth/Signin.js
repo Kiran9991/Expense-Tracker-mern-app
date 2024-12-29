@@ -36,13 +36,12 @@ const Signin = () => {
         const data = await response.json();
         if (!response.ok) throw new Error(data.message);
         localStorage.setItem("token", data.token);
-        console.log(data)
         setToken(data.token);
         const { isPremium } = decodeToken(data.token);
         // localStorage.setItem('isPremium', isPremium);
         setIsPremium(isPremium)
         setIsLogin(true);
-        navigate('/dashboard')
+        navigate('/expense/dashboard')
         localStorage.setItem('page', 1);
         notify(data.message, 'success')
       } catch (error) {

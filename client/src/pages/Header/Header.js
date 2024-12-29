@@ -7,20 +7,7 @@ import symbols from "../../images/Symbol";
 
 import { expenseContext } from "../../store/expense-context";
 import { LocalHost } from "../../App";
-
-export function decodeJWT(token) {
-  if (!token) return;
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map((char) => "%" + ("00" + char.charCodeAt(0).toString(16)).slice(-2))
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
-}
+import decodeToken from "../../hook/decodeToken";
 
 const Header = () => {
   const { isLogin, setIsLogin, isPremium, setIsPremium } =
@@ -29,7 +16,7 @@ const Header = () => {
   const location = useLocation();
   const { page } = useContext(expenseContext);
   const token = localStorage.getItem("token");
-  const { username } = decodeJWT(token) || "";
+  const { username } = decodeToken(token) || "";
   const { deleteAllExpense } = useContext(expenseContext);
 
   const signoutHandler = () => {

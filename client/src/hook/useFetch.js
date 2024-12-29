@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import fetchApi from './fetchApi';
-import { token } from '../App';
+import FetchApi from './FetchApi';
+// import { token } from '../App';
 import { expenseContext } from '../store/expense-context';
+import { UserContext } from '../store/user-context';
+import decodeToken from './decodeToken';
 
 export default function useFetch(url, method) {
+  const { token, } = useContext(UserContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,19 +15,23 @@ export default function useFetch(url, method) {
     if(!token) return;
      async function getDataApi(url, method) {
       setLoading(true);
+      // console.log(decodeToken(token))
       try{
-        const response = await fetchApi(url, method);
+        const response = await FetchApi(url, method);
         const json = await response.json();
+        // console.log('api call')
         if(!response.ok) {
           throw new Error(json.message);}
         setData(json);
       } catch(error) {
+        console.log(error.message)
         setError(error);
       }
     }
     getDataApi(url, method);
     setLoading(false);
+    console.log('useEffect call')
   }, [token, url, method])
 
-  return { data, loading, error, fetchApi }
+  return { data, loading, error, FetchApi }
 }

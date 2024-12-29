@@ -51,10 +51,10 @@ const signin = async (req, res) => {
     
     const token = jwt.sign(userObj, 'kiran');
 
-    res.status(200).json({ message: `Successfully sign in ${email}`, token})
+    res.status(200).json({ message: `Successfully sign in ${email}`, token, isPremium: user.isPremium })
   } catch (error) {
-    console.log(error)
-    res.status(401).json({ error: `${error.message}`})
+    // console.log(error.message)
+    res.status(401).json({ message: error.message })
   }
 };
 

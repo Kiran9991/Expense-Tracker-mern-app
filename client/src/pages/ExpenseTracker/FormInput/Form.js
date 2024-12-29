@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import styles from "./Form.module.css";
 import { expenseContext } from "../../../store/expense-context";
 import { LocalHost } from "../../../App";
-import fetchApi from "../../../hook/fetchApi";
+import FetchApi from "../../../hook/FetchApi";
 import notify from "../../../hook/notify";
 import { useNavigate } from "react-router-dom";
 
@@ -33,7 +33,7 @@ export default function Form() {
     };
 
     try {
-      const response = await fetchApi(
+      const response = await FetchApi(
         `${LocalHost}/expense/expense-form`,
         "POST",
         expenseData

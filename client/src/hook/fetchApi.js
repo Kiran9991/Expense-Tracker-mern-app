@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { token } from "../App";
+import { UserContext } from "../store/user-context";
 
-export default async function fetchApi(url, method, bodyObj) {
-// console.log(url, method)
+export default async function FetchApi(url, method, bodyObj) {
+  // console.log(url, method)
+  const { token } = useContext(UserContext);
+  // console.log('api call', token)
   const response = await fetch(url, {
     method: method,
     headers: {

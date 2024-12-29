@@ -5,11 +5,13 @@ import styles from "./form.module.css";
 import signupIcon from "../../images/signup.png";
 import { UserContext } from "../../store/user-context";
 import { LocalHost } from "../../App";
+import notify from "../../hook/notify";
+import decodeToken from "../../hook/decodeToken";
 
 const Signin = () => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
-  const { setIsLogin } = useContext(UserContext);
+  const { setIsLogin, token, setToken, setIsPremium } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitFormHandler = async (e) => {
@@ -31,21 +33,25 @@ const Signin = () => {
           },
           body: JSON.stringify(obj),
         });
-        const { message, token } = await response.json();
-        if (!response.ok) throw new Error(message);
-        localStorage.setItem("token", token);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message);
+        localStorage.setItem("token", data.token);
+        console.log(data)
+        setToken(data.token);
+        const { isPremium } = decodeToken(data.token);
+        // localStorage.setItem('isPremium', isPremium);
+        setIsPremium(isPremium)
         setIsLogin(true);
-        navigate('/expense/form')
+        navigate('/dashboard')
         localStorage.setItem('page', 1);
-        // prop.setAuth();
-        alert(message);
+        notify(data.message, 'success')
       } catch (error) {
         console.log(error)
-        alert(error);
+        notify(error.message, 'error');
       }
 
-      enteredEmail.current.value = "";
-      enteredPassword.current.value = "";
+      // enteredEmail.current.value = "";
+      // enteredPassword.current.value = "";
       // console.log("submitted", obj);
     } else {
       alert("Please Enter correct Password");

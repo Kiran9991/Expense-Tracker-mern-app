@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { expenseContext } from "../../../store/expense-context";
 import { LocalHost } from "../../../App";
 import notify from "../../../hook/notify";
-import fetchApi from "../../../hook/fetchApi";
+import FetchApi from "../../../hook/FetchApi";
 import styles from "./ListItems.module.css";
 import Pagination from "./Pagination";
 
@@ -16,7 +16,7 @@ export default function ListExpenses() {
   
   const deleteButtonHandler = (id) => {
     async function deleteExpenseApi(id) {
-      const response = await fetchApi(`${LocalHost}/expense/${id}`, 'Delete');
+      const response = await FetchApi(`${LocalHost}/expense/${id}`, 'Delete');
       const data = await response.json();
       notify(data.message, 'success');
     }

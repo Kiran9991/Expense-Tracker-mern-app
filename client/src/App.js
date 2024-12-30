@@ -20,30 +20,26 @@ import Form from "./pages/ExpenseTracker/FormInput/Form";
 
 function App() {
   const { token, setToken, isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
-  const { expenses, addExpense, page } = useContext(expenseContext);
+  const { expenses, addExpense, page, limit } = useContext(expenseContext);
   const { isPremium } = decodeToken(token) || false;
   const location = useLocation();
   const navigate = useNavigate();
   const { data, loading, error } = useFetch(
-    `${LocalHost}/expense/expenses?page=${page}&limit=${expenses.length}`,
+    `${LocalHost}/expense/expenses?page=${page}&limit=${limit}`,
     "GET"
   );
 
-  console.log(isLogin, 'global')
 
   useEffect(() => {
-    // console.log(token)
-    console.log(isLogin, 'before token gone')
     if(!token) return setIsLogin(false);
     setToken(localStorage.getItem('token'))
-    console.log(isLogin, 'useEffect')
     token && setIsLogin(true);
     (isPremium || localStorage.getItem("isPremium")) &&  setIsPremium(true);
     // isLogin && navigate(`/expense/expenses/${page}`)
     // data && console.log(data)
     // console.log(page)
     data && addExpense(data.expensesPerPage, data.totalAmount, data.totalExpenses);
-  }, [ token, isLogin, isPremium, page, data, location.pathname ]);
+  }, [ token, isLogin, isPremium, page, data, location.pathname, limit, expenses.length ]);
 
   return (
     <>

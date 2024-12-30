@@ -4,12 +4,14 @@ const obj = {
   expenses: [],
   totalExpenses: 0,
   totalAmount:0,
+  limit:parseInt(localStorage.getItem('limit')) || 5,
   page: parseInt(localStorage.getItem('page')) || 1, 
   addExpense: () => {}, 
   deleteExpense: () => {},
   deleteAllExpense: () => {},
   prevPage: () => {},
   nextPage: () => {},
+  setPageLimit: () => {},
 };
 
 export const expenseContext = createContext(obj);
@@ -19,11 +21,9 @@ const ExpenseContextProvider = (props) => {
   const [page, setPage] = useState(obj.page);
   const [total, setTotal] = useState(0);
   const [amount, setAmount] = useState(0);
-
-// console.log(expenses)
+  const [limit, setLimit] = useState(obj.limit);
 
   const addExpenseHandler = (expense, expenseAmount, noOfExpenses) => {
-  //  console.log(expenseAmount)
     if(Array.isArray(expense)) {
       setExpense([...expense]);
       setTotal(parseInt(noOfExpenses));
@@ -52,21 +52,27 @@ const ExpenseContextProvider = (props) => {
   }
 
   const nextPageUpdateHandler = () => {
-    // console.log(expenses.length);
     setPage(prev => expenses.length > 0 ? prev+1 : 1);
     localStorage.setItem('page', expenses.length > 0 ? page+1 : 1);
+  }
+
+  const setLimitHandler = (val) => {
+    setLimit(val);
+    localStorage.setItem('limit', val);
   }
 
   const expenseObj = {
     expenses: expenses,
     page: page,
     totalExpenses: total,
-    totalAmount: amount, 
+    totalAmount: amount,
+    limit: limit, 
     addExpense: addExpenseHandler,
     deleteExpense: deleteExpenseHandler,
     deleteAllExpense: deleteAllExpenseHandler,
     prevPage: prevPageUpdateHandler,
-    nextPage: nextPageUpdateHandler
+    nextPage: nextPageUpdateHandler,
+    setPageLimit: setLimitHandler
   };
 
   return (

@@ -14,3 +14,8 @@
     border-radius: 5px;
     cursor: default;
 }
+
+.middleBtn {
+    display: flex;
+    gap: 15px;
+}

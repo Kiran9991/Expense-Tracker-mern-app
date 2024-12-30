@@ -667,11 +667,10 @@ const postExpense = async (req, res) => {
 
 // expense/expenses
 const getExpenses = async (req, res) => {
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 5;
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
   const user = req.user;
   try {
-    const limit = 5;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const allExpenses = await Expense.findAll({

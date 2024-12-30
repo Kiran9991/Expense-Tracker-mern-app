@@ -7,10 +7,10 @@ import decodeToken from './decodeToken';
 
 export default function useFetch(url, method) {
   const { token, } = useContext(UserContext);
+  const { expenses } = useContext(expenseContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     if(!token) return;
@@ -29,7 +29,7 @@ export default function useFetch(url, method) {
     }
     getDataApi(url, method);
     setLoading(false);
-  }, [token, url, method])
+  }, [token, url, method, expenses.length])
 
   return { data, loading, error, FetchApi }
 }

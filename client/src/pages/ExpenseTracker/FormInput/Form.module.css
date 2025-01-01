@@ -1,58 +1,107 @@
-
-
-
 .formContainer {
-    width: 600px;
-    margin: auto;
-    background: linear-gradient(to bottom, #bba4c7, #ddd8e4);
-    color: black;
-    padding: 20px;
-    margin-top: 10px;
-    border-radius: 15px;
-    font-weight: 400;
+  width: 600px;
+  margin: auto;
+  background: linear-gradient(to bottom, #bba4c7, #ddd8e4);
+  color: black;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 15px;
+  font-weight: 400;
 }
 
 .form {
-    display: grid;
-    grid-template-columns: 270px 270px;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 270px 270px;
+  gap: 20px;
 }
 
 .formTitle {
-    text-align: center;
-    font-size: 30px;
-    padding: 10px;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px;
 }
 
+.form button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(148, 92, 201);
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+.form button:hover {
+  background-color: rgb(18, 16, 20);
+}
+
+.category {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  border: none;
+}
+
+.inputFormBox {
+  display: none;
+}
+/* to float label at top in input field */
+
+/* To position the element */
+.formGroup {
+    position:relative;
+}
+
+/* add css to input field element */
 .form input {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border:none;
+    /* border:none; */
     margin-top: 10px;
 }
 
-.form button {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(148, 92, 201);
-    color: white;
-    border-radius: 10px;
-    border: none;
-}
-
-.form button:hover {
-    background-color: rgb(18, 16, 20);
-}
-
-.category {
-    width: 100%;
-    padding: 10px;
+/* add css to input field element and some decorative part */
+.formInput {
+    border: 2px solid rgb(163, 155, 155);
     border-radius: 5px;
-    margin-top: 10px;
-    border: none;
+    outline: none;
+    background: none;
+    padding: 10px;
+    color: black;
+    transition: 3s;
 }
 
-.inputFormBox {
-    display: none;
+/* add css top label element and making position to same as the form div element */
+.formLabel {
+    position: absolute;
+    top:1.2rem;
+    left: 1.4rem;
+    cursor: text;
+    transition: 0.5s;
+    background: #bba4c7;
+    border-radius: 5px;
+    /* transition: top 200mx ease-in, left 200ms ease-in, font-size 200ms ease-in; */
+    /* transition means to customized the process like slowing down the movement */
 }
+
+/* when input field click the formInput will highlight with solid border with color */
+.formInput:focus,
+.category:focus {
+    border: 2px solid black;
+    /* display: none; */
+}
+
+/* add css to brother of input field i.e label element when click on the input field the css properties will work */
+/* add css when input field has some value or placeholder text i.e when user is typing some text in this field*/
+.formInput:focus ~ .formLabel,
+.category:focus ~ .formLabel,
+.formInput:not(:placeholder-shown).formInput:not(:focus) ~ .formLabel,
+.category:not(:placeholder-shown).formInput:not(:focus) ~ .formLabel {
+    top: 0.25rem;
+    left: 0.5rem;
+    font-size: 10px;
+    color: black;
+}
+
+

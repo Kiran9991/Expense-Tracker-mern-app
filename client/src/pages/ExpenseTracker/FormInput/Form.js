@@ -56,32 +56,35 @@ export default function Form() {
     <div className={styles.formContainer}>
       <div className={styles.formTitle}>Expense Tracker Form</div>
       <form className={styles.form} onSubmit={handleSubmit} typeof="submit">
-        <div className={isWrap ? styles.inputFormBox : ""}>
-          <label>Expense</label>
+        <div className={isWrap ? styles.inputformBox : styles.formGroup}>
           <input
             type="text"
-            placeholder="Enter your Expense..."
+            placeholder=" "
             ref={(ele) => formRefs.current.expense = ele}
-          />
+            className={styles.formInput}
+            />
+            <label className={styles.formLabel}>Enter Expense</label>
         </div>
-        <div className={isWrap ? styles.inputFormBox : ""}>
-          <label>Amount</label>
+        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
           <input
             type="number"
-            placeholder="Enter your amount..."
+            placeholder=" "
             ref={(el) => (formRefs.current.amount = el)}
+            className={styles.formInput}
           />
+          <label className={styles.formLabel}>Enter your amount...</label>
         </div>
-        <div className={isWrap ? styles.inputFormBox : ""}>
-          <label>Description</label>
+        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
           <input
             type="text"
-            placeholder="Enter your Description..."
+            placeholder=" "
             ref={(el) => (formRefs.current.description = el)}
+            className={styles.formInput}
           />
+          <label className={styles.formLabel}>Enter your Description...</label>
         </div>
-        <div className={isWrap ? styles.inputFormBox : ""}>
-          <label>Category</label>
+        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
+          <label className={styles.formLabel}>Category</label>
           <select id="category" className={styles.category} ref={(el) => (formRefs.current.category = el)}>
             <option value="electricity">Electricity</option>
             <option value="travel">Travel</option>

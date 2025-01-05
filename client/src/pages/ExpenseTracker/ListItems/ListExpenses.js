@@ -29,7 +29,7 @@ export default function ListExpenses() {
   if (expenses.length > 0) {
     content = expenses.map((ele) => (
       <div className={styles.listItem} key={Math.random()}>
-        <div style={{ width: "28.2rem" }}>
+        <div style={{ width: "28.2rem", pointerEvents: "none" }}>
           {ele.expense} - Rs. {ele.amount} - {ele.description}
         </div>
         <div>

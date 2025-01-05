@@ -6,12 +6,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Pagination() {
   const { page, nextPage, prevPage, setPageLimit, limit } = useContext(expenseContext);
+  const navigate = useNavigate();
 
   const paginationHandler = () => {
     nextPage();
   };
 
   const prevPaginationEffectHandler = () => {
+    // navigate(`/expense/expenses/${page}`)
     prevPage();
   };
 

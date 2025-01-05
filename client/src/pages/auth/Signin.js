@@ -83,9 +83,11 @@ const Signin = () => {
             />
           </div>
 
-          {/* <div className={styles.forgotPassword}>
-              <a href="#">Forgot password?</a>
-            </div> */}
+          <div className={styles.forgotPassword}>
+            <Link to={"/forgot-password"} className={styles.signInLink}>
+            Forgot Password
+            </Link>
+            </div>
           <button type="submit" className={styles.btnPrimary}>
             Sign up
           </button>

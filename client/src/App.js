@@ -17,6 +17,8 @@ import Toastify from "./components/Toastify";
 import About from "./pages/ExpenseTracker/About/About";
 import ErrorPage from "./pages/Error/ErrorPage";
 import Form from "./pages/ExpenseTracker/FormInput/Form";
+import SubNav from "./pages/Header/SubNavBar/SubNav";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 function App() {
   const { token, setToken, isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
@@ -35,7 +37,7 @@ function App() {
     setToken(localStorage.getItem('token'))
     token && setIsLogin(true);
     (isPremium || localStorage.getItem("isPremium")) &&  setIsPremium(true);
-    // isLogin && navigate(`/expense/expenses/${page}`)
+    // data && navigate(`/expense/expenses/${page}`)
     // data && console.log(data)
     // console.log(page)
     data && addExpense(data.expensesPerPage, data.totalAmount, data.totalExpenses);
@@ -44,7 +46,10 @@ function App() {
   return (
     <>
      <Toastify/>
-      <Header isLogin={isLogin} />
+      {isLogin && <> <Header/>
+      <SubNav/>
+      </>
+    }
       <Routes>
 
         {/* Public Routes */}
@@ -53,6 +58,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/sign-in" element={<Signin />} />
           <Route path="/sign-up" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
           <Route path="*" element={<ErrorPage/>} />
           </>}
 

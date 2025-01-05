@@ -4,7 +4,7 @@ export default async function FetchApi(url, method, token, bodyObj) {
     method: method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: `${token}`,
+      ...(token && { Authorization: `${token}` }),
     },
     ...(bodyObj && { body: JSON.stringify(bodyObj) }),
   });

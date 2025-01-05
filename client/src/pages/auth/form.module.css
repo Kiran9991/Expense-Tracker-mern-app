@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 89vh;
+  height: 100vh;
   padding: 0 20px; /* Adds padding to adjust for smaller screens */
   background: url("../../images/backgroundimg.webp") no-repeat center
     center fixed;
@@ -44,22 +44,9 @@ p {
 
 .inputGroup {
   margin-bottom: 15px;
+  position: relative;
 }
 
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-input[type="email"]:focus,
-input[type="password"]:focus {
-  outline: none;
-  border-color: #007bff;
-}
 
 .forgotPassword {
   text-align: right;
@@ -127,17 +114,16 @@ input[type="password"]:focus {
     width: 30px; /* Smaller icons */
     height: 30px;
   }
-
+  
   h2 {
     font-size: 20px;
   }
-
+  
   p {
     font-size: 12px;
   }
 
-  input[type="email"],
-  input[type="password"] {
+  input {
     padding: 10px; /* Adjust input padding */
   }
 
@@ -169,4 +155,48 @@ input[type="password"]:focus {
   font-size: 0.9rem;
   color: grey;
   text-align: center;
+}
+
+input{
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.formLabel {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  transition: 0.5s;
+  cursor: text;
+}
+
+/* .formInput:focus ~ .formLabel
+.formInput:not(:placeholder-shown).formInput:not(:focus) ~ .formLabel {
+  top: -0.7em;
+  left: 1em;
+  outline: none;
+  border-color: #007bff;
+  background: #fff;
+  padding: 0 3px
+} */
+
+.formInput:focus ~ .formLabel {
+  top: -0.7em;
+  left: 1em;
+  outline: none;
+  border-color: #007bff;
+  background: #fff;
+  padding: 0 3px;
+}
+
+.formInput:not(:placeholder-shown) .formInput:not(:focus) ~ .formLabel {
+  top: -0.7em;
+  left: 1em;
+  outline: none;
+  border-color: #007bff;
+  background: #fff;
+  padding: 0 3px,
 }

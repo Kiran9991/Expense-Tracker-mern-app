@@ -70,30 +70,30 @@ const Signup = (prop) => {
           <div className={styles.inputGroup}>
             <input
               type="email"
-              placeholder="Email"
               required
               ref={enteredEmail}
+              placeholder=" "
+              className={styles.formInput}
             />
+            <label className={styles.formLabel}>Email</label>
           </div>
           <div className={styles.inputGroup}>
             <input
               type="password"
-              placeholder="Password"
               required
               ref={enteredPassword}
             />
+            <label className={styles.formLabel}>Password</label>
           </div>
           <div className={styles.inputGroup}>
             <input
               type="password"
-              placeholder="Confirm Password"
               required
               ref={enteredConfirmPassword}
             />
+            <label className={styles.formLabel}>Confirm Password</label>
           </div>
-          {/* <div className={styles.forgotPassword}>
-            <a href="#">Forgot password?</a>
-          </div> */}
+          
           <button type="submit" className={styles.btnPrimary}>
             Sign up
           </button>

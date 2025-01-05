@@ -50,11 +50,11 @@ const Header = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.navItemsLeftContainer}>
-        {!isLogin && (
+        {/* {!isLogin && (
           <Link to={"/home"} className={styles.navLeftItem}>
             Home
           </Link>
-        )}
+        )} */}
 
         {isLogin && [
           <Link to={"/expense/form"} key={Math.random()}>
@@ -67,8 +67,11 @@ const Header = () => {
           <Link to={"/expense/dashboard"} className={styles.navLeftItem} key={Math.random()}>
           Dashboard
           </Link>,
+          <Link to={"/expense/accounts"} className={styles.navLeftItem} key={Math.random()}>
+          Account
+        </Link>,
           <Link to={"/expense/form"} className={styles.navLeftItem} key={Math.random()}>
-            Expense Tracker
+            Form
           </Link>,
           <Link to={`/expense/expenses/${page}`} className={styles.navLeftItem} key={Math.random()}>
             List
@@ -96,11 +99,11 @@ const Header = () => {
 
         {isLogin && <div className={styles.userNameText}>{username}</div>}
 
-        {!isLogin && (
+        {/* {!isLogin && (
           <Link to={"/sign-in"} className={styles.navRightItem}>
             <img className={styles.navBtn} src={symbols.Signin} alt="sign in" />
           </Link>
-        )}
+        )} */}
 
         {isLogin && (
           <img

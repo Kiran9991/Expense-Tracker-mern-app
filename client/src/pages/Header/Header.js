@@ -50,12 +50,6 @@ const Header = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.navItemsLeftContainer}>
-        {/* {!isLogin && (
-          <Link to={"/home"} className={styles.navLeftItem}>
-            Home
-          </Link>
-        )} */}
-
         {isLogin && [
           <Link to={"/expense/form"} key={Math.random()}>
             <img

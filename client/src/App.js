@@ -19,6 +19,7 @@ import ErrorPage from "./pages/Error/ErrorPage";
 import Form from "./pages/ExpenseTracker/FormInput/Form";
 import SubNav from "./pages/Header/SubNavBar/SubNav";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import Chat from "./pages/Chat/Chat";
 
 function App() {
   const { token, setToken, isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
@@ -33,6 +34,7 @@ function App() {
 
 
   useEffect(() => {
+    
     if(!token) return setIsLogin(false);
     setToken(localStorage.getItem('token'))
     token && setIsLogin(true);
@@ -73,6 +75,8 @@ function App() {
             <Route path="*" element={<ErrorPage/>} />
           </Route>
           </>}
+
+        {isLogin && <Route path="/chat" element={<Chat/>}/>}
 
       </Routes>
     </>

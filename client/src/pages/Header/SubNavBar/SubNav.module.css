@@ -1,3 +1,27 @@
 .subNavBarContainer {
-    background: rgb(221, 133, 147);
+  background: rgb(217 201 203);
+  height: 35px;
 }
+
+.icon {
+  height: 100%;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.icon:hover {
+  background: rgb(148, 132, 134);
+}
+
+.navLinks {
+  text-decoration: none;
+  color: black;
+  font-family: bold;
+  padding: 8.5px 5px;
+  font-family: sans-serif;
+  transition: 0.3s;
+}
+
+.navLinks:hover {
+    background: rgb(148, 132, 134);
+  }

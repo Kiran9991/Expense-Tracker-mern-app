@@ -1,18 +1,18 @@
 import React from "react";
 
 import styles from "./Chat.module.css";
+import Footer from "./Footer/Footer";
+import DisplayContent from "./Display/DisplayContent";
 
 export default function Chat() {
-    return (
-      <div>
 
-      <div className={styles.container}>
-      <div className={styles.header}>Chat with users</div>
-      <div className={styles.footer}>
-        <input type="text" className={styles.input} />
-        <button className={styles["send-button"]}>Send</button>
-      </div>
+  return (
+    <div>
+      <form className={styles.container}>
+        <div className={styles.header}>Chat with users</div>
+        <DisplayContent/>
+        <Footer/>
+      </form>
     </div>
-      </div>
   );
 }

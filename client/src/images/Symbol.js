@@ -5,6 +5,7 @@ const symbols = {
   Premium: require("./premium.png"),
   signup: require('./signup.png'),
   sidebar: require('./sidebar.png'),
+  trash: require('./trash.png'),
 };
 
 export default symbols;

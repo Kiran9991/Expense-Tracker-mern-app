@@ -5,17 +5,19 @@ import { expenseContext } from '../store/expense-context';
 import { UserContext } from '../store/user-context';
 import decodeToken from './decodeToken';
 
-export default function useFetch(url, method) {
+export default function useFetch(url, method, stateData) {
   const { token, } = useContext(UserContext);
   const { expenses } = useContext(expenseContext);
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // console.log(loading)
 
   useEffect(() => {
     if(!token) return;
      async function getDataApi(url, method) {
-      setLoading(true);
+       setLoading(prev => !prev);
       try{
         const response = await FetchApi(url, method, token);
         const json = await response.json();
@@ -28,8 +30,8 @@ export default function useFetch(url, method) {
       }
     }
     getDataApi(url, method);
-    setLoading(false);
-  }, [token, url, method, expenses.length])
+    setLoading(prev => !prev);
+  }, [token, url, method, expenses.length, stateData])
 
   return { data, loading, error, FetchApi }
 }

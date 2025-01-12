@@ -10,12 +10,11 @@
 .header {
   /* Styles for the header */
   background: #e1dada;
-    height: 50px;
-    text-align: center;
-    display: flex
-;
-    justify-content: center;
-    align-items: center;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer {
@@ -36,7 +35,7 @@
   margin-right: 5px;
 }
 
-.send-button {
+.sendButton {
   background-color: #4caf50;
   color: white;
   border: none;
@@ -49,19 +48,54 @@
   transition: all 0.3s ease;
 }
 
-.send-button:hover {
+.sendButton:hover {
   background-color: #45a049;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
 
-.send-button:active {
+.sendButton:active {
   background-color: #3e8e41;
   transform: scale(0.95);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-.send-button:focus {
+.sendButton:focus {
   outline: 2px solid #45a049;
   outline-offset: 2px;
 }
+
+.chatDisplayContainer {
+  height: 63vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 10px;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+.chatDisplayContainer::-webkit-scrollbar{
+  width: 5px;
+}
+
+.chatDisplayContainer div {
+  background-color: lightblue;
+  border-radius: 5px;
+  display: flex;
+}
+
+.chatDisplayContainer img {
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+
+.chatMessages {
+  background-color: lightblue;
+  padding: 5px;
+  width: fit-content;
+  border-radius: 5px;
+}
+

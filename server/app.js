@@ -8,6 +8,7 @@ const database = require("./database/db");
 const userRoutes = require('./routes/user');
 const expenseRoutes = require('./routes/expense');
 const resetRoutes = require('./routes/resest-password');
+const chatRoutes = require('./routes/chat');
 
 let app = express();
 const PORT = process.env.PORT_NUMBER;
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);
 app.use('/user', resetRoutes);
+app.use('/chat', chatRoutes);
 
 User.hasMany(Expense);
 Expense.belongsTo(User);

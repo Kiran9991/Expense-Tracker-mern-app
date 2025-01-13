@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup.png";
 import { UserContext } from "../../store/user-context";
-import { LocalHost } from "../../App";
+import { LocalHost } from "../..";
 import notify from "../../hook/notify";
 import decodeToken from "../../hook/decodeToken";
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { expenseContext } from "../../../store/expense-context";
-import { LocalHost } from "../../../App";
+import { LocalHost } from "../../..";
 import notify from "../../../hook/notify";
 import FetchApi from "../../../hook/FetchApi";
 import styles from "./ListItems.module.css";

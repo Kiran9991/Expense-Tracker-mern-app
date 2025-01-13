@@ -3,7 +3,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import styles from "../Chat.module.css";
 import { chatContext } from "../../../store/Chat";
 import useFetch from "../../../hook/useFetch";
-import { LocalHost } from "../../../App";
+import { LocalHost } from "../../..";
 
 export default function DisplayContent() {
   const { chats, addChats } = useContext(chatContext);

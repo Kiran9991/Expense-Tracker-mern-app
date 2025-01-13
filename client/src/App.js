@@ -1,27 +1,20 @@
 import React, { lazy, useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import {
-  Signup,
-  Signin,
   useFetch,
   decodeToken,
   UserContext,
   expenseContext,
   Header,
-  Home,
   ExpenseTracker,
-  ListExpenses,
-  Dashboard,
-  ErrorPage,
-  About,
-  Form,
   SubNav,
-  ForgotPassword,
   Chat,
   Toastify,
+  LocalHost,
+  token,
+  ExpenseRoutes,
+  AuthRoutes
 } from "./index";
-
-import { ExpenseRoutes } from "./pages/ExpenseTracker/ExpenseTracker";
 
 function App() {
   const { token, setToken, isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
@@ -59,7 +52,6 @@ function App() {
       <Toastify />
       {isLogin && (
         <>
-          {" "}
           <Header />
           <SubNav />
         </>
@@ -68,21 +60,15 @@ function App() {
         {/* Public Routes */}
 
         {!isLogin && (
-          <>
-            <Route path="/home" element={<Home />} />
-            <Route path="/sign-in" element={<Signin />} />
-            <Route path="/sign-up" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="*" element={<ErrorPage />} />
-          </>
+          <Route path="*" element={<AuthRoutes/>}/>
         )}
 
         {/* Private Routes */}
 
         {isLogin && (
-            <Route path="/expense" element={<ExpenseTracker />}>
-              <ExpenseRoutes/>
-            </Route>
+          <Route path="/expense" element={<ExpenseTracker />}>
+            <Route path="*" element={<ExpenseRoutes />} />
+          </Route>
         )}
 
         {isLogin && <Route path="/chat" element={<Chat />} />}
@@ -93,6 +79,4 @@ function App() {
 
 export default App;
 
-export const LocalHost = `http://localhost:4000`;
 
-export const token = localStorage.getItem("token");

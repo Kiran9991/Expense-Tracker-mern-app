@@ -1,5 +1,5 @@
 import FetchApi from "../hook/FetchApi";
-import { LocalHost } from "../App";
+import { LocalHost } from "..";
 
 // post Req
 export default async function postMessageApi(message) {

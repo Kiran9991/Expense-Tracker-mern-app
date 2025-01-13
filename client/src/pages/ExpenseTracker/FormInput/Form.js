@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import styles from "./Form.module.css";
 import { expenseContext } from "../../../store/expense-context";
-import { LocalHost } from "../../../App";
+import { LocalHost } from "../../..";
 import FetchApi from "../../../hook/FetchApi";
 import notify from "../../../hook/notify";
 import { useNavigate } from "react-router-dom";

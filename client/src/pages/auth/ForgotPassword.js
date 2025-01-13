@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import styles from "./form.module.css";
 import FetchApi from "../../hook/FetchApi";
-import { LocalHost } from "../../App";
+import { LocalHost } from "../..";
 import { PulseLoader } from "react-spinners";
 import notify from "../../hook/notify";
 import { useNavigate } from "react-router-dom";

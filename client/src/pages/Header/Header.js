@@ -6,7 +6,7 @@ import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 import symbols from "../../images/Symbol";
 
 import { expenseContext } from "../../store/expense-context";
-import { LocalHost } from "../../App";
+import { LocalHost } from "../..";
 import decodeToken from "../../hook/decodeToken";
 
 const Header = () => {

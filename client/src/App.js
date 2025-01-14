@@ -58,19 +58,14 @@ function App() {
       )}
       <Routes>
         {/* Public Routes */}
-
-        {!isLogin && (
-          <Route path="*" element={<AuthRoutes/>}/>
-        )}
+        {!isLogin && <Route path="*" element={<AuthRoutes/>}/>}
 
         {/* Private Routes */}
-
         {isLogin && (
           <Route path="/expense" element={<ExpenseTracker />}>
             <Route path="*" element={<ExpenseRoutes />} />
           </Route>
         )}
-
         {isLogin && <Route path="/chat" element={<Chat />} />}
       </Routes>
     </>

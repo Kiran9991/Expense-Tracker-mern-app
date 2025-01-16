@@ -91,7 +91,7 @@ const Header = () => {
           </div>
         )}
 
-        {isLogin && <div className={styles.userNameText}>{username}</div>}
+        {isLogin && <div className='my-2 bg-red-500'>sd{username}</div>}
 
         {/* {!isLogin && (
           <Link to={"/sign-in"} className={styles.navRightItem}>

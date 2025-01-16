@@ -31,11 +31,7 @@ function App() {
     setToken(localStorage.getItem("token"));
     token && setIsLogin(true);
     (isPremium || localStorage.getItem("isPremium")) && setIsPremium(true);
-    // data && navigate(`/expense/expenses/${page}`)
-    // data && console.log(data)
-    // console.log(page)
-    data &&
-      addExpense(data.expensesPerPage, data.totalAmount, data.totalExpenses);
+    data && addExpense(data.expensesPerPage, data.totalAmount, data.totalExpenses);
   }, [
     token,
     isLogin,

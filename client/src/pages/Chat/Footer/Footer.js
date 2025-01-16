@@ -5,7 +5,6 @@ import Button from "../../../components/Button";
 import postMessageApi from "../../../apis/ChatApi";
 import { chatContext } from "../../../store/Chat";
 import { io } from 'socket.io-client';
-import { token } from "../../..";
 
 const SOCKET_SERVER_URL = "http://localhost:4000";
 

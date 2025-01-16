@@ -9,10 +9,6 @@ import { UserContext } from "../../../store/user-context";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
-  // const expenseRef = useRef(null);
-  // const amountRef = useRef(null);
-  // const descriptionRef = useRef(null);
-  // const categoryRef = useRef(null);
   const { token } = useContext(UserContext);
   const formRefs = useRef({ expense: null, amount:null, description: null, category: null })
   const { addExpense } = useContext(expenseContext);

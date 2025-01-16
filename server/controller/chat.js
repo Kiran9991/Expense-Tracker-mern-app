@@ -1,4 +1,5 @@
 const ChatMessages = require('../models/chats');
+const Users = require('../models/user');
 
 // /chat/send
 const addMessages = async(req, res) => {
@@ -25,7 +26,18 @@ const getMessages = async (req, res) => {
     }
 };
 
+// /chat/users
+const getUsers = async (req, res) => {
+    try {
+        const users = await Users.findAll();
+        res.status(201).json({ message: 'successfully got users', users })
+    }catch(error) {
+        console.log(error, 'Internal server error!')
+    }
+}
+
 module.exports = {
     addMessages,
-    getMessages
+    getMessages,
+    getUsers
 }

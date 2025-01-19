@@ -3,18 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup.png";
-import { LocalHost } from "../..";
 import FormInput from "./components/FormInput";
+import Button from "./components/Button";
+import SwitchLink from "./components/SwitchLink";
+import { validatePassword } from "./utils/validatePassword";
+import { postAuth } from "./apis/postAuth";
 
-export const validatePassword = (password, confirmPassword) => {
-  if (password.length < 6) return false;
-
-  if (password !== confirmPassword) return false;
-
-  return true;
-};
-
-const Signup = (prop) => {
+const Signup = () => {
   const navigate = useNavigate();
   const enteredEmail = useRef();
   const enteredPassword = useRef();
@@ -34,15 +29,10 @@ const Signup = (prop) => {
 
     if (validatePassword(password, confirmPassword)) {
       try {
-        const response = await fetch(`${LocalHost}/user/signup`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
-        });
+        const response = await postAuth('sign-up', obj);
         const message = await response.json();
         if (!response.ok) throw new Error(message.message);
+
         alert(message.message);
         navigate("/sign-in");
       } catch (error) {
@@ -68,19 +58,11 @@ const Signup = (prop) => {
         </div>
         <h2>Sign up</h2>
         <form onSubmit={submitFormHandler}>
-            <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
-            <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
-            <FormInput text={"Confirm Password"} type={"password"} ref={enteredConfirmPassword}/>
-          <button type="submit" className={styles.btnPrimary}>
-            Sign up
-          </button>
-
-          <div className={styles.signInText}>
-            Already signed up?{" "}
-            <Link to={"/sign-in"} className={styles.signInLink}>
-              Sign in
-            </Link>
-          </div>
+          <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
+          <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
+          <FormInput text={"Confirm Password"} type={"password"} ref={enteredConfirmPassword}/>
+          <Button type={'submit'}>Sign up</Button>
+          <SwitchLink text={`Already signed up? `} linkText={`Sign in`} to={'/sign-in'} />
         </form>
       </div>
     </div>

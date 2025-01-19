@@ -53,7 +53,7 @@ p {
   font-size: 14px;
 }
 
-.btnPrimary {
+/* .btnPrimary {
   width: 100%;
   padding: 12px;
   background-color: #000;
@@ -66,7 +66,7 @@ p {
 
 .btnPrimary:hover {
   background-color: #333;
-}
+} */
 
 .orText {
   margin: 20px 0;
@@ -124,24 +124,6 @@ p {
   .socialIcons img {
     width: 30px; /* Smaller social icons */
   }
-}
-
-.signInText {
-  font-size: 0.8rem;
-  color: grey;
-  text-align: center;
-  margin: 15px 0; /* Add space above and below */
-  display: inline; /* Ensure the text stays on the same line */
-}
-
-.signInLink {
-  color: grey;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.signInLink:hover {
-  color: darkgrey;
 }
 
 .orText {

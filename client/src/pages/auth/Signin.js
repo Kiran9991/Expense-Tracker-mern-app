@@ -4,15 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup.png";
 import { UserContext } from "../../store/user-context";
-import { LocalHost } from "../..";
 import notify from "../../hook/notify";
 import decodeToken from "../../hook/decodeToken";
 import FormInput from "./components/FormInput";
+import Button from "./components/Button";
+import SwitchLink from "./components/SwitchLink";
+import { postAuth } from "./apis/postAuth";
+import { validatePassword } from "./utils/validatePassword";
 
 const Signin = () => {
   const enteredEmail = useRef();
   const enteredPassword = useRef();
-  const { setIsLogin, token, setToken, setIsPremium } = useContext(UserContext);
+  const { setIsLogin, setToken, setIsPremium } = useContext(UserContext);
   const navigate = useNavigate();
 
   const submitFormHandler = async (e) => {
@@ -20,22 +23,18 @@ const Signin = () => {
     let email = enteredEmail.current.value;
     let password = enteredPassword.current.value;
 
-    let obj = {
+    let user = {
       email,
       password,
     };
 
-    if (password.length >= 6) {
+    if (validatePassword(password)) {
       try {
-        const response = await fetch(`${LocalHost}/user/signin`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(obj),
-        });
-        const data = await response.json();
+        const response = await postAuth('sign-in', user); 
+        const data = await response.json()
+
         if (!response.ok) throw new Error(data.message);
+
         localStorage.setItem("token", data.token);
         setToken(data.token);
         const { isPremium } = decodeToken(data.token);
@@ -50,7 +49,7 @@ const Signin = () => {
         notify(error.message, "error");
       }
     } else {
-      alert("Please Enter correct Password");
+      notify("Password strength should be greate than 6", 'error');
       enteredPassword.current.value = "";
     }
   };
@@ -63,23 +62,11 @@ const Signin = () => {
         </div>
         <h2>Signin</h2>
         <form onSubmit={submitFormHandler}>
-            <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
-            <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
-          <div className={styles.forgotPassword}>
-            <Link to={"/forgot-password"} className={styles.signInLink}>
-              Forgot Password
-            </Link>
-          </div>
-          <button type="submit" className={styles.btnPrimary}>
-            Sign up
-          </button>
-
-          <div className={styles.signInText}>
-            New User? Signup here{" "}
-            <Link to={"/sign-up"} className={styles.signInLink}>
-              Sign up
-            </Link>
-          </div>
+          <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
+          <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
+          <Button type={'submit'}>Sign in</Button>
+          <SwitchLink text={`Click here for `} linkText={`Forgot Password`} to={`/forgot-password`} /><br/>
+          <SwitchLink text={`New User? Signup here `} linkText={`Sign up`} to={`/sign-up`} />
         </form>
       </div>
     </div>

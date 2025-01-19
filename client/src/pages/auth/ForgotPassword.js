@@ -6,6 +6,7 @@ import { LocalHost } from "../..";
 import { PulseLoader } from "react-spinners";
 import notify from "../../hook/notify";
 import { useNavigate } from "react-router-dom";
+import FormInput from "./components/FormInput";
 
 export default function ResetPassword() {
   const emailInputRef = useRef();
@@ -45,14 +46,7 @@ export default function ResetPassword() {
       <div className={styles.loginCard}>
         <h2>Reset Password</h2>
         <form onSubmit={submitFormHandler}>
-          <div className={styles.inputGroup}>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              ref={emailInputRef}
-            />
-          </div>
+        <FormInput text={"Email id"} type={"text"} ref={emailInputRef} />
           {!loading && (
             <div style={{ display: "flex", gap: "15px" }}>
               <button

@@ -17,8 +17,7 @@ import {
 } from "./index";
 
 function App() {
-  const { token, setToken, isLogin, setIsLogin, setIsPremium } =
-    useContext(UserContext);
+  const { token, setToken, isLogin, setIsLogin, setIsPremium } = useContext(UserContext);
   const { expenses, addExpense, page, limit } = useContext(expenseContext);
   const { isPremium } = decodeToken(token) || false;
   const location = useLocation();

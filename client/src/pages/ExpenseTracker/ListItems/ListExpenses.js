@@ -15,16 +15,20 @@ export default function ListExpenses() {
   let content = (
     <div className={styles.listNoItem}>No Expenses! Add Expenses here</div>
   );
-  
+
   const deleteButtonHandler = (id) => {
     async function deleteExpenseApi(id) {
-      const response = await FetchApi(`${LocalHost}/expense/${id}`, 'Delete', token);
+      const response = await FetchApi(
+        `${LocalHost}/expense/${id}`,
+        "Delete",
+        token,
+      );
       const data = await response.json();
-      notify(data.message, 'success');
+      notify(data.message, "success");
     }
     deleteExpenseApi(id);
     deleteExpense(id);
-  }
+  };
 
   if (expenses.length > 0) {
     content = expenses.map((ele) => (
@@ -45,9 +49,10 @@ export default function ListExpenses() {
     ));
   }
 
-
-  return <div className={styles.listItemsContainer}>
-    {content}
-    <Pagination/>
-    </div>;
+  return (
+    <div className={styles.listItemsContainer}>
+      {content}
+      <Pagination />
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Home, Signin, Signup, ForgotPassword, ErrorPage } from '../index';
+import { Home, Signin, Signup, ForgotPassword, ErrorPage } from "../index";
 
 export default function AuthRoutes() {
   return (

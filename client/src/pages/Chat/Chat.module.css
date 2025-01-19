@@ -76,7 +76,7 @@
   scroll-behavior: smooth;
 }
 
-.chatDisplayContainer::-webkit-scrollbar{
+.chatDisplayContainer::-webkit-scrollbar {
   width: 5px;
 }
 
@@ -98,4 +98,3 @@
   width: fit-content;
   border-radius: 5px;
 }
-

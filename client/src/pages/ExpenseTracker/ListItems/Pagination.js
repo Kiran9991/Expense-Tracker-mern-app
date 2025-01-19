@@ -5,7 +5,8 @@ import { expenseContext } from "../../../store/expense-context";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Pagination() {
-  const { page, nextPage, prevPage, setPageLimit, limit } = useContext(expenseContext);
+  const { page, nextPage, prevPage, setPageLimit, limit } =
+    useContext(expenseContext);
   const navigate = useNavigate();
 
   const paginationHandler = () => {
@@ -27,7 +28,11 @@ export default function Pagination() {
       </div>
       <div className={styles.middleBtn}>
         <div className={styles.paginationButton}>Current Page - {page}</div>
-        <select style={{ borderRadius: '5px' }} value={limit} onChange={(e) => setPageLimit(e.target.value)}>
+        <select
+          style={{ borderRadius: "5px" }}
+          value={limit}
+          onChange={(e) => setPageLimit(e.target.value)}
+        >
           <option>5</option>
           <option>6</option>
           <option>7</option>

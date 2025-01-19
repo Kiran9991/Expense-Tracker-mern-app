@@ -25,7 +25,7 @@ export default function ResetPassword() {
           `${LocalHost}/user/reset-password`,
           "POST",
           "",
-          obj
+          obj,
         );
         const data = await response.json();
         console.log(data);
@@ -53,13 +53,19 @@ export default function ResetPassword() {
               ref={emailInputRef}
             />
           </div>
-          {!loading && <div style={{ display: 'flex', gap: '15px' }}>
-            <button className={styles.btnPrimary} onClick={() => navigate('/sign-in')}>Go Back</button>
-            <button type="submit" className={styles.btnPrimary}>
-              Send Forgot password request
-            </button>
+          {!loading && (
+            <div style={{ display: "flex", gap: "15px" }}>
+              <button
+                className={styles.btnPrimary}
+                onClick={() => navigate("/sign-in")}
+              >
+                Go Back
+              </button>
+              <button type="submit" className={styles.btnPrimary}>
+                Send Forgot password request
+              </button>
             </div>
-          }
+          )}
           <PulseLoader loading={loading} />
         </form>
       </div>

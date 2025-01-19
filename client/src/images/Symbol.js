@@ -3,9 +3,9 @@ const symbols = {
   Signin: require("./signin.png"),
   Expense: require("./expense.png"),
   Premium: require("./premium.png"),
-  signup: require('./signup.png'),
-  sidebar: require('./sidebar.png'),
-  trash: require('./trash.png'),
+  signup: require("./signup.png"),
+  sidebar: require("./sidebar.png"),
+  trash: require("./trash.png"),
 };
 
 export default symbols;

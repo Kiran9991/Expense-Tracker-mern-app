@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
-const obj = { 
+const obj = {
   expenses: [],
   totalExpenses: 0,
-  totalAmount:0,
-  limit:parseInt(localStorage.getItem('limit')) || 5,
-  page: parseInt(localStorage.getItem('page')) || 1, 
-  addExpense: () => {}, 
+  totalAmount: 0,
+  limit: parseInt(localStorage.getItem("limit")) || 5,
+  page: parseInt(localStorage.getItem("page")) || 1,
+  addExpense: () => {},
   deleteExpense: () => {},
   deleteAllExpense: () => {},
   prevPage: () => {},
@@ -24,14 +24,14 @@ const ExpenseContextProvider = (props) => {
   const [limit, setLimit] = useState(obj.limit);
 
   const addExpenseHandler = (expense, expenseAmount, noOfExpenses) => {
-    if(Array.isArray(expense)) {
+    if (Array.isArray(expense)) {
       setExpense([...expense]);
       setTotal(parseInt(noOfExpenses));
       setAmount(expenseAmount);
-    }else {
-      setExpense((prevArr) => [ expense, ...prevArr ]);
-      setTotal(prev => prev++);
-      setAmount(prev => prev += expense.amount);
+    } else {
+      setExpense((prevArr) => [expense, ...prevArr]);
+      setTotal((prev) => prev++);
+      setAmount((prev) => (prev += expense.amount));
     }
   };
 
@@ -44,35 +44,35 @@ const ExpenseContextProvider = (props) => {
 
   const deleteAllExpenseHandler = () => {
     setExpense([]);
-  }
+  };
 
   const prevPageUpdateHandler = () => {
-    page > 1 && setPage(prev => prev-1);
-    page > 1 && localStorage.setItem('page', page-1);
-  }
+    page > 1 && setPage((prev) => prev - 1);
+    page > 1 && localStorage.setItem("page", page - 1);
+  };
 
   const nextPageUpdateHandler = () => {
-    setPage(prev => expenses.length > 0 ? prev+1 : 1);
-    localStorage.setItem('page', expenses.length > 0 ? page+1 : 1);
-  }
+    setPage((prev) => (expenses.length > 0 ? prev + 1 : 1));
+    localStorage.setItem("page", expenses.length > 0 ? page + 1 : 1);
+  };
 
   const setLimitHandler = (val) => {
     setLimit(val);
-    localStorage.setItem('limit', val);
-  }
+    localStorage.setItem("limit", val);
+  };
 
   const expenseObj = {
     expenses: expenses,
     page: page,
     totalExpenses: total,
     totalAmount: amount,
-    limit: limit, 
+    limit: limit,
     addExpense: addExpenseHandler,
     deleteExpense: deleteExpenseHandler,
     deleteAllExpense: deleteAllExpenseHandler,
     prevPage: prevPageUpdateHandler,
     nextPage: nextPageUpdateHandler,
-    setPageLimit: setLimitHandler
+    setPageLimit: setLimitHandler,
   };
 
   return (

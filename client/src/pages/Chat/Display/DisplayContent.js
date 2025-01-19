@@ -8,7 +8,10 @@ import { LocalHost } from "../../..";
 export default function DisplayContent() {
   const { chats, addChats } = useContext(chatContext);
   const chatContainerRef = useRef();
-  const { data, loading, error } = useFetch(`${LocalHost}/chat/messages`,"GET");
+  const { data, loading, error } = useFetch(
+    `${LocalHost}/chat/messages`,
+    "GET",
+  );
 
   //   data && console.log(chats, data.messages);
 

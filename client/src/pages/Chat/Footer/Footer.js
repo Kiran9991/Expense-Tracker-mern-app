@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef } from "react";
 
-import styles from '../Chat.module.css';
+import styles from "../Chat.module.css";
 import Button from "../../../components/Button";
 import postMessageApi from "../../../apis/ChatApi";
 import { chatContext } from "../../../store/Chat";
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
@@ -19,19 +19,19 @@ export default function Footer() {
     const data = await postMessageApi(message);
     // console.log(data);
     // addChats(data);
-    socket.emit('chat-message', data);
-    enteredTextRef.current.value = '';
+    socket.emit("chat-message", data);
+    enteredTextRef.current.value = "";
   };
-  
-  useEffect(() => {  
-    socket.on('chat-message', (msg) => {
-      addChats(msg)
-    })
+
+  useEffect(() => {
+    socket.on("chat-message", (msg) => {
+      addChats(msg);
+    });
 
     return () => {
-      socket.disconnect();  // clean up on unmount
-    }
-  },[])
+      socket.disconnect(); // clean up on unmount
+    };
+  }, []);
 
   return (
     <div className={styles.footer}>
@@ -41,7 +41,11 @@ export default function Footer() {
         ref={enteredTextRef}
         placeholder="Type a message here..."
       />
-      <button className={styles.sendButton} type="submit" onClick={submitFormHandler}>
+      <button
+        className={styles.sendButton}
+        type="submit"
+        onClick={submitFormHandler}
+      >
         Send
       </button>
     </div>

@@ -649,13 +649,13 @@ const postExpense = async (req, res) => {
   try {
     // expenseObj
     // for(let obj of arrOfObjectOfExpenses) {
-      const expenseObj = await Expense.create({
-        expense,
-        amount,
-        description,
-        category,
-        UserId: req.user.userId,
-      });
+    const expenseObj = await Expense.create({
+      expense,
+      amount,
+      description,
+      category,
+      UserId: req.user.userId,
+    });
     // }
 
     res.status(201).json({ message: "Successfully added Expense", expenseObj });
@@ -682,14 +682,17 @@ const getExpenses = async (req, res) => {
 
     // const nextPage = endIndex < allExpenses.length ? page + 1  : null;
     // const prevPage = startIndex > 0 ? page - 1 : null;
-    const totalAmount = allExpenses.reduce((total, ele) => total += ele.amount ? parseInt(ele.amount) : 0 , 0);
+    const totalAmount = allExpenses.reduce(
+      (total, ele) => (total += ele.amount ? parseInt(ele.amount) : 0),
+      0,
+    );
     const expensesPerPage = allExpenses.slice(startIndex, endIndex);
     res.status(201).json({
-        expensesPerPage,
-        currentPage: page,
-        totalExpenses: allExpenses.length,
-        totalAmount
-      });
+      expensesPerPage,
+      currentPage: page,
+      totalExpenses: allExpenses.length,
+      totalAmount,
+    });
   } catch (error) {
     res.status(40).json({ error: `${error.message}` });
     // console.log(error, "Internal Server Error!");

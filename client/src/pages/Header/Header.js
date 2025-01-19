@@ -58,19 +58,39 @@ const Header = () => {
               alt="Expense Tracker symbol"
             />
           </Link>,
-          <Link to={"/expense/dashboard"} className={styles.navLeftItem} key={Math.random()}>
-          Dashboard
+          <Link
+            to={"/expense/dashboard"}
+            className={styles.navLeftItem}
+            key={Math.random()}
+          >
+            Dashboard
           </Link>,
-          <Link to={"/expense/accounts"} className={styles.navLeftItem} key={Math.random()}>
-          Account
-        </Link>,
-          <Link to={"/expense/form"} className={styles.navLeftItem} key={Math.random()}>
+          <Link
+            to={"/expense/accounts"}
+            className={styles.navLeftItem}
+            key={Math.random()}
+          >
+            Account
+          </Link>,
+          <Link
+            to={"/expense/form"}
+            className={styles.navLeftItem}
+            key={Math.random()}
+          >
             Form
           </Link>,
-          <Link to={`/expense/expenses/${page}`} className={styles.navLeftItem} key={Math.random()}>
+          <Link
+            to={`/expense/expenses/${page}`}
+            className={styles.navLeftItem}
+            key={Math.random()}
+          >
             List
           </Link>,
-          <Link to={"/expense/about-us"} className={styles.navLeftItem} key={Math.random()}>
+          <Link
+            to={"/expense/about-us"}
+            className={styles.navLeftItem}
+            key={Math.random()}
+          >
             About Us
           </Link>,
         ]}
@@ -84,15 +104,22 @@ const Header = () => {
               isPremium ? styles.premiumElement : styles.nonPremiumElement
             }
           >
-            <img style={{ height: "40px" }} src={symbols.Premium} alt="premium" />
+            <img
+              style={{ height: "40px" }}
+              src={symbols.Premium}
+              alt="premium"
+            />
             <p style={{ padding: "10px 0px" }}>
               {isPremium ? "Premium" : "Buy Premium"}
             </p>
           </div>
         )}
 
-        {isLogin && <div className='my-2 bg-red-500'>sd{username}</div>}
-
+        {isLogin && (
+          <div className="my-3 bg-purple-300 rounded-lg flex items-center w-fit px-2 border border-black p-5">
+            {username}
+          </div>
+        )}
         {/* {!isLogin && (
           <Link to={"/sign-in"} className={styles.navRightItem}>
             <img className={styles.navBtn} src={symbols.Signin} alt="sign in" />

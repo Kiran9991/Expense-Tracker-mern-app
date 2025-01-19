@@ -7,6 +7,7 @@ import { UserContext } from "../../store/user-context";
 import { LocalHost } from "../..";
 import notify from "../../hook/notify";
 import decodeToken from "../../hook/decodeToken";
+import FormInput from "./components/FormInput";
 
 const Signin = () => {
   const enteredEmail = useRef();
@@ -39,19 +40,15 @@ const Signin = () => {
         setToken(data.token);
         const { isPremium } = decodeToken(data.token);
         // localStorage.setItem('isPremium', isPremium);
-        setIsPremium(isPremium)
+        setIsPremium(isPremium);
         setIsLogin(true);
-        navigate('/expense/dashboard')
-        localStorage.setItem('page', 1);
-        notify(data.message, 'success')
+        navigate("/expense/dashboard");
+        localStorage.setItem("page", 1);
+        notify(data.message, "success");
       } catch (error) {
-        console.log(error)
-        notify(error.message, 'error');
+        console.log(error);
+        notify(error.message, "error");
       }
-
-      // enteredEmail.current.value = "";
-      // enteredPassword.current.value = "";
-      // console.log("submitted", obj);
     } else {
       alert("Please Enter correct Password");
       enteredPassword.current.value = "";
@@ -61,33 +58,18 @@ const Signin = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginCard}>
-        <div className={styles.loginIcon}>
+        <div className="h-10 flex justify-center">
           <img src={signupIcon} alt="Sign up Icon" />
         </div>
         <h2>Signin</h2>
         <form onSubmit={submitFormHandler}>
-          <div className={styles.inputGroup}>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              ref={enteredEmail}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              ref={enteredPassword}
-            />
-          </div>
-
+            <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
+            <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
           <div className={styles.forgotPassword}>
             <Link to={"/forgot-password"} className={styles.signInLink}>
-            Forgot Password
+              Forgot Password
             </Link>
-            </div>
+          </div>
           <button type="submit" className={styles.btnPrimary}>
             Sign up
           </button>

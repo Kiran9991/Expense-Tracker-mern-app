@@ -10,7 +10,12 @@ import { UserContext } from "../../../store/user-context";
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
   const { token } = useContext(UserContext);
-  const formRefs = useRef({ expense: null, amount:null, description: null, category: null })
+  const formRefs = useRef({
+    expense: null,
+    amount: null,
+    description: null,
+    category: null,
+  });
   const { addExpense } = useContext(expenseContext);
   const navigate = useNavigate();
 
@@ -37,7 +42,7 @@ export default function Form() {
         `${LocalHost}/expense/expense-form`,
         "POST",
         token,
-        expenseData
+        expenseData,
       );
       const json = await response.json();
       if (!response.ok) throw new Error(json.message);
@@ -56,10 +61,10 @@ export default function Form() {
           <input
             type="text"
             placeholder=" "
-            ref={(ele) => formRefs.current.expense = ele}
+            ref={(ele) => (formRefs.current.expense = ele)}
             className={styles.formInput}
-            />
-            <label className={styles.formLabel}>Enter Expense</label>
+          />
+          <label className={styles.formLabel}>Enter Expense</label>
         </div>
         <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
           <input
@@ -81,7 +86,11 @@ export default function Form() {
         </div>
         <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
           <label className={styles.formLabel}>Category</label>
-          <select id="category" className={styles.category} ref={(el) => (formRefs.current.category = el)}>
+          <select
+            id="category"
+            className={styles.category}
+            ref={(el) => (formRefs.current.category = el)}
+          >
             <option value="electricity">Electricity</option>
             <option value="travel">Travel</option>
             <option value="food">Food</option>

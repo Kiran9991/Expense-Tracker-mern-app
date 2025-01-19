@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
 const addUser = async (req, res) => {
   try {
@@ -39,25 +39,34 @@ const signin = async (req, res) => {
 
     const user = await User.findOne({ where: { username: email } });
 
-    if (!user) throw new Error(`User doesn't Exist!`)
+    if (!user) throw new Error(`User doesn't Exist!`);
 
-    const result = await bcrypt.compare(password, user.password)
+    const result = await bcrypt.compare(password, user.password);
 
-    if(!result) throw new Error("Password doesn't Matched!")
+    if (!result) throw new Error("Password doesn't Matched!");
 
     const userObj = {
-      userId: user.id, username: user.username, isPremium: user.isPremium
-    }
-    
-    const token = jwt.sign(userObj, 'kiran');
+      userId: user.id,
+      username: user.username,
+      isPremium: user.isPremium,
+    };
 
-    res.status(200).json({ message: `Successfully sign in ${email}`, token, isPremium: user.isPremium })
+    const token = jwt.sign(userObj, "kiran");
+
+    res
+      .status(200)
+      .json({
+        message: `Successfully sign in ${email}`,
+        token,
+        isPremium: user.isPremium,
+      });
   } catch (error) {
     // console.log(error.message)
-    res.status(401).json({ message: error.message })
+    res.status(401).json({ message: error.message });
   }
 };
 
 module.exports = {
-  addUser, signin
+  addUser,
+  signin,
 };

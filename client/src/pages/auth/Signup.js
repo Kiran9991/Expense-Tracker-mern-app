@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./form.module.css";
 import signupIcon from "../../images/signup.png";
 import { LocalHost } from "../..";
+import FormInput from "./components/FormInput";
 
 export const validatePassword = (password, confirmPassword) => {
   if (password.length < 6) return false;
@@ -34,20 +35,20 @@ const Signup = (prop) => {
     if (validatePassword(password, confirmPassword)) {
       try {
         const response = await fetch(`${LocalHost}/user/signup`, {
-          method:'POST',
+          method: "POST",
           headers: {
-            'Content-Type':'application/json',
+            "Content-Type": "application/json",
           },
-          body:JSON.stringify(obj)
-        })
+          body: JSON.stringify(obj),
+        });
         const message = await response.json();
-        if(!response.ok) throw new Error(message.message);
+        if (!response.ok) throw new Error(message.message);
         alert(message.message);
-        navigate('/sign-in')
-      } catch(error) {
-        alert(error)
+        navigate("/sign-in");
+      } catch (error) {
+        alert(error);
       }
-      
+
       enteredEmail.current.value = "";
       enteredPassword.current.value = "";
       enteredConfirmPassword.current.value = "";
@@ -62,45 +63,23 @@ const Signup = (prop) => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginCard}>
-        <div className={styles.loginIcon}>
+        <div className="h-10 flex justify-center">
           <img src={signupIcon} alt="Sign up Icon" />
         </div>
         <h2>Sign up</h2>
         <form onSubmit={submitFormHandler}>
-          <div className={styles.inputGroup}>
-            <input
-              type="email"
-              required
-              ref={enteredEmail}
-              placeholder=" "
-              className={styles.formInput}
-            />
-            <label className={styles.formLabel}>Email</label>
-          </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              required
-              ref={enteredPassword}
-            />
-            <label className={styles.formLabel}>Password</label>
-          </div>
-          <div className={styles.inputGroup}>
-            <input
-              type="password"
-              required
-              ref={enteredConfirmPassword}
-            />
-            <label className={styles.formLabel}>Confirm Password</label>
-          </div>
-          
+            <FormInput text={"Email id"} type={"text"} ref={enteredEmail} />
+            <FormInput text={"Password"} type={"password"} ref={enteredPassword}/>
+            <FormInput text={"Confirm Password"} type={"password"} ref={enteredConfirmPassword}/>
           <button type="submit" className={styles.btnPrimary}>
             Sign up
           </button>
 
           <div className={styles.signInText}>
             Already signed up?{" "}
-            <Link to={"/sign-in"} className={styles.signInLink}>Sign in</Link>
+            <Link to={"/sign-in"} className={styles.signInLink}>
+              Sign in
+            </Link>
           </div>
         </form>
       </div>

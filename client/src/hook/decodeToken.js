@@ -7,11 +7,11 @@ export default function decodeToken(token) {
       atob(base64)
         .split("")
         .map((char) => "%" + ("00" + char.charCodeAt(0).toString(16)).slice(-2))
-        .join("")
+        .join(""),
     );
-//   console.log(jsonPayload, 'jsonPlayload')
+    //   console.log(jsonPayload, 'jsonPlayload')
     return JSON.parse(jsonPayload);
-  }catch(error) {
-    console.log(error.message)
+  } catch (error) {
+    console.log(error.message);
   }
 }

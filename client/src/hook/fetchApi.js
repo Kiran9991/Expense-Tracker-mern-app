@@ -1,4 +1,3 @@
-
 export default async function FetchApi(url, method, token, bodyObj) {
   const response = await fetch(url, {
     method: method,

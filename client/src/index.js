@@ -41,18 +41,18 @@ export const LocalHost = `http://localhost:4000`;
 export const token = localStorage.getItem("token");
 
 //
-export { default as ExpenseRoutes }  from "./routes/ExpenseRoutes";
-export { default as AuthRoutes }  from "./routes/AuthRoutes";
+export { default as ExpenseRoutes } from "./routes/ExpenseRoutes";
+export { default as AuthRoutes } from "./routes/AuthRoutes";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChatContextProvider>
-  <ExpenseContextProvider>
-    <UserContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </UserContextProvider>
-  </ExpenseContextProvider>
-  </ChatContextProvider>
+    <ExpenseContextProvider>
+      <UserContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </UserContextProvider>
+    </ExpenseContextProvider>
+  </ChatContextProvider>,
 );

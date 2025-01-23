@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { UserContext } from "../../store/user-context";
 import { expenseContext } from "../../store/expense-context";
-import styles from "./Header.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import symbols from "../../images/Symbol";
 import NavBarLink from "./NavBarLink";
 import decodeToken from "../../hook/decodeToken";
 import { LocalHost } from "../..";
+import Icon from "./Icon";
+import Col from "./Col";
 
 const Header = () => {
   const { isLogin, setIsLogin, isPremium, setIsPremium } =
@@ -47,17 +48,13 @@ const Header = () => {
   };
 
   return (
-    <nav className={styles.nav}>
-      <div className={styles.navItemsLeftContainer}>
-        {isLogin && (
-          <>
+    <>
+      {isLogin && (
+        <Col>
+          <Col>
             {/* Expense Tracker Symbol */}
             <NavBarLink to={"/expense/form"}>
-              <img
-                className={styles.expenseSymbol}
-                src={symbols.Expense}
-                alt="Expense Tracker symbol"
-              />
+              <Icon src={symbols.Expense} />
             </NavBarLink>
 
             {/* Navigation Links */}
@@ -66,48 +63,31 @@ const Header = () => {
             <NavBarLink to={"/expense/form"}>Form</NavBarLink>
             <NavBarLink to={`/expense/expenses/${page}`}>List</NavBarLink>
             <NavBarLink to={"/expense/about-us"}>About Us</NavBarLink>
-          </>
-        )}
-      </div>
+          </Col>
 
-      <div className={styles.navItemsRightContainer}>
-        {isLogin && (
-          <div
-            onClick={buyPremiumBtnHandler}
-            className={
-              isPremium ? styles.premiumElement : styles.nonPremiumElement
-            }
-          >
-            <img
-              style={{ height: "40px" }}
-              src={symbols.Premium}
-              alt="premium"
-            />
-            <p style={{ padding: "10px 0px" }}>
-              {isPremium ? "Premium" : "Buy Premium"}
-            </p>
-          </div>
-        )}
+          <Col>
+            <Col onClick={buyPremiumBtnHandler}>
+              <Icon src={symbols.Premium} />
+              <div>{isPremium ? "Premium" : "Buy Premium"}</div>
+            </Col>
 
-        {isLogin && (
-          <div
-            className="my-3 bg-purple-300 rounded-lg flex items-center 
-            w-fit px-2 border border-black p-5"
-          >
-            {username}
-          </div>
-        )}
+            <div
+              className="my-1 bg-purple-300 rounded-lg 
+            flex items-center 
+            w-fit border border-black p-3
+            hover:bg-purple-800 hover:text-white 
+            cursor-default "
+            >
+              {username}
+            </div>
 
-        {isLogin && (
-          <img
-            className={styles.navBtn}
-            src={symbols.Signout}
-            alt="Sign out"
-            onClick={signoutHandler}
-          />
-        )}
-      </div>
-    </nav>
+            <div onClick={signoutHandler} className=" transition hover:brightness-50 ">
+              <Icon src={symbols.Signout} />
+            </div>
+          </Col>
+        </Col>
+      )}
+    </>
   );
 };
 

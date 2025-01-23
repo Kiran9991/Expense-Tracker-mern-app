@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 
 import styles from "./form.module.css";
-import FetchApi from "../../hook/FetchApi";
-import { LocalHost } from "../..";
 import { PulseLoader } from "react-spinners";
-import notify from "../../hook/notify";
 import { useNavigate } from "react-router-dom";
 import FormInput from "./components/FormInput";
+import Button from "./components/Button";
+import resetPasswordReq from "./apis/resetPasswordReq";
 
 export default function ResetPassword() {
   const emailInputRef = useRef();
@@ -18,27 +17,8 @@ export default function ResetPassword() {
     const obj = {
       email: emailInputRef.current.value,
     };
-
-    const sendForgotPasswordReq = async () => {
-      setLoading(true);
-      try {
-        const response = await FetchApi(
-          `${LocalHost}/user/reset-password`,
-          "POST",
-          "",
-          obj,
-        );
-        const data = await response.json();
-        console.log(data);
-        if (!response.ok) throw new Error(`Email sending Failed!`);
-      } catch (error) {
-        console.log(error);
-        notify(error.message, "error");
-      }
-      setLoading(false);
-    };
-
-    sendForgotPasswordReq();
+    resetPasswordReq(setLoading, obj);
+    emailInputRef.current.value = '';
   };
 
   return (
@@ -49,15 +29,10 @@ export default function ResetPassword() {
         <FormInput text={"Email id"} type={"text"} ref={emailInputRef} />
           {!loading && (
             <div style={{ display: "flex", gap: "15px" }}>
-              <button
-                className={styles.btnPrimary}
-                onClick={() => navigate("/sign-in")}
-              >
+              <Button type={'button'} onClick={() => navigate("/sign-in")}>
                 Go Back
-              </button>
-              <button type="submit" className={styles.btnPrimary}>
-                Send Forgot password request
-              </button>
+              </Button>
+              <Button type={"submit"}>Send Forgot password request</Button>
             </div>
           )}
           <PulseLoader loading={loading} />

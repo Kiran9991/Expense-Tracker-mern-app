@@ -6,6 +6,8 @@ import FetchApi from "../../../hook/FetchApi";
 import notify from "../../../hook/notify";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../store/user-context";
+import { Button, FormInput } from "../../auth";
+import Col from "../../../components/Col";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
@@ -56,35 +58,13 @@ export default function Form() {
   return (
     <div className={styles.formContainer}>
       <div className={styles.formTitle}>Expense Tracker Form</div>
-      <form className={styles.form} onSubmit={handleSubmit} typeof="submit">
-        <div className={isWrap ? styles.inputformBox : styles.formGroup}>
-          <input
-            type="text"
-            placeholder=" "
-            ref={(ele) => (formRefs.current.expense = ele)}
-            className={styles.formInput}
-          />
-          <label className={styles.formLabel}>Enter Expense</label>
-        </div>
-        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
-          <input
-            type="number"
-            placeholder=" "
-            ref={(el) => (formRefs.current.amount = el)}
-            className={styles.formInput}
-          />
-          <label className={styles.formLabel}>Enter your amount...</label>
-        </div>
-        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
-          <input
-            type="text"
-            placeholder=" "
-            ref={(el) => (formRefs.current.description = el)}
-            className={styles.formInput}
-          />
-          <label className={styles.formLabel}>Enter your Description...</label>
-        </div>
-        <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
+      <Col>
+        <FormInput text={"Expense Name"} type={"text"} ref={(ele) => (formRefs.current.expense = ele)} />
+        <FormInput text={"Expense number"} type={"number"} ref={(el) => (formRefs.current.amount = el)} />
+        <FormInput text={"Expense description"} type={"text"} ref={(el) => (formRefs.current.description = el)} />
+        <FormInput text={"Expense category"} type={"text"} ref={(el) => (formRefs.current.amount = el)} />
+        
+        {/* <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
           <label className={styles.formLabel}>Category</label>
           <select
             id="category"
@@ -96,16 +76,10 @@ export default function Form() {
             <option value="food">Food</option>
             <option value="home">Home</option>
           </select>
-        </div>
-        <div>
-          <button type="button" onClick={wraphandler}>
-            {content}
-          </button>
-        </div>
-        <div className={isWrap ? styles.inputFormBox : ""}>
-          <button type="submit">Add Expense</button>
-        </div>
-      </form>
+          </div> */}
+          <Button type={'button'}>Wrap Form</Button>
+          <Button type={'submit'}>Add Expense</Button>
+      </Col>
     </div>
   );
 }

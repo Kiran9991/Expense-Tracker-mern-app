@@ -9,8 +9,8 @@ import ExpenseContextProvider from "./store/expense-context";
 import ChatContextProvider from "./store/Chat";
 
 // auth
-export { default as Signup } from "./pages/auth/Signup";
-export { default as Signin } from "./pages/auth/Signin";
+export { default as Signup } from "./pages/auth/pages/Signup";
+export { default as Signin } from "./pages/auth/pages/Signin";
 
 // hooks
 export { default as useFetch } from "./hook/useFetch";
@@ -25,12 +25,12 @@ export { default as Header } from "./pages/Header/Header";
 export { default as Home } from "./pages/Home";
 export { default as ExpenseTracker } from "./pages/ExpenseTracker/ExpenseTracker";
 export { default as ListExpenses } from "./pages/ExpenseTracker/ListItems/ListExpenses";
-export { default as Dashboard } from "./pages/ExpenseTracker/Dashboard/Dashboard";
+export { default as Dashboard } from "./pages/Dashboard/Dashboard";
 export { default as ErrorPage } from "./pages/Error/ErrorPage";
 export { default as About } from "./pages/ExpenseTracker/About/About";
 export { default as Form } from "./pages/ExpenseTracker/FormInput/Form";
 export { default as SubNav } from "./pages/Header/SubNavBar/SubNav";
-export { default as ForgotPassword } from "./pages/auth/ForgotPassword";
+export { default as ForgotPassword } from "./pages/auth/pages/ForgotPassword";
 export { default as Chat } from "./pages/Chat/Chat";
 
 // components

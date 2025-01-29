@@ -3,11 +3,13 @@ import { UserContext } from "../../store/user-context";
 import { expenseContext } from "../../store/expense-context";
 import { useNavigate, useLocation } from "react-router-dom";
 import symbols from "../../images/Symbol";
-import NavBarLink from "./NavBarLink";
+import NavBarLink from "./components/NavBarLink";
 import decodeToken from "../../hook/decodeToken";
 import { LocalHost } from "../..";
-import Icon from "./Icon";
-import Col from "./Col";
+import Icon from "./components/Icon";
+import Col from "../../components/Col";
+import Switch from "./components/Switch";
+import Profile from "./components/Profile";
 
 const Header = () => {
   const { isLogin, setIsLogin, isPremium, setIsPremium } =
@@ -66,22 +68,17 @@ const Header = () => {
           </Col>
 
           <Col>
+          <Switch/>
             <Col onClick={buyPremiumBtnHandler}>
               <Icon src={symbols.Premium} />
               <div>{isPremium ? "Premium" : "Buy Premium"}</div>
             </Col>
 
-            <div
-              className="my-1 bg-purple-300 rounded-lg 
-            flex items-center 
-            w-fit border border-black p-3
-            hover:bg-purple-800 hover:text-white 
-            cursor-default "
-            >
+            <Profile>
               {username}
-            </div>
+            </Profile>
 
-            <div onClick={signoutHandler} className=" transition hover:brightness-50 ">
+            <div onClick={signoutHandler} className=" transition hover:brightness-50 mr-2">
               <Icon src={symbols.Signout} />
             </div>
           </Col>

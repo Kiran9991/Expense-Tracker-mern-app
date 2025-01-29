@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import styles from "./Dashboard.module.css";
-import { expenseContext } from "../../../store/expense-context";
+import { expenseContext } from "../../store/expense-context";
 
 export default function Dashboard() {
   const { totalExpenses, totalAmount } = useContext(expenseContext);

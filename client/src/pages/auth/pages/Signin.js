@@ -1,16 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import styles from "./form.module.css";
-import signupIcon from "../../images/signup.png";
-import { UserContext } from "../../store/user-context";
-import notify from "../../hook/notify";
-import decodeToken from "../../hook/decodeToken";
-import FormInput from "./components/FormInput";
-import Button from "./components/Button";
-import SwitchLink from "./components/SwitchLink";
-import { postAuth } from "./apis/postAuth";
-import { validatePassword } from "./utils/validatePassword";
+import { styles, signupIcon, UserContext, notify, decodeToken, FormInput, Button,
+   SwitchLink, postAuth, validatePassword } from '../index';
 
 const Signin = () => {
   const enteredEmail = useRef();
@@ -23,10 +15,7 @@ const Signin = () => {
     let email = enteredEmail.current.value;
     let password = enteredPassword.current.value;
 
-    let user = {
-      email,
-      password,
-    };
+    let user = { email, password };
 
     if (validatePassword(password)) {
       try {

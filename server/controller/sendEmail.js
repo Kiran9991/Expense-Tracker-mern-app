@@ -43,6 +43,17 @@ const sendEmail = async (req, res) => {
   }
 };
 
+const updatePassword = async(req, res) => {
+  const { oldPassword, newPassword, } = req.body;
+  try{
+    
+
+  }catch(error) {
+    console.log(error);
+    res.status(500).json({ message: error })
+  }
+}
+
 module.exports = {
   sendEmail,
 };

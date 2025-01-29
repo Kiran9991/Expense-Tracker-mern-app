@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 
-import styles from "./form.module.css";
+import styles from "../form.module.css";
 import { PulseLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
-import FormInput from "./components/FormInput";
-import Button from "./components/Button";
-import resetPasswordReq from "./apis/resetPasswordReq";
+import FormInput from "../../../components/FormInput";
+import Button from "../../../components/Button";
+import resetPasswordReq from "../apis/resetPasswordReq";
 
 export default function ResetPassword() {
   const emailInputRef = useRef();

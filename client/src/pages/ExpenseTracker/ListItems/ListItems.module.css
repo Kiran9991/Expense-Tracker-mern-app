@@ -33,6 +33,18 @@
   }
 }
 
+/* @keyframes appear {
+  from {
+    opacity: 0;
+    scale: 1;
+  }
+  to {
+    opacity: 1;
+    scale:1;
+  }
+
+} */
+
 .listItem {
   padding: 15px;
   background: linear-gradient(to right, #a375c2, #ece8ef);
@@ -42,7 +54,12 @@
   font-weight: 0;
   display: flex;
   justify-content: space-between;
+  /* animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 20% cover 10%, */
 }
+
+
 
 .listNoItem {
   text-align: center;

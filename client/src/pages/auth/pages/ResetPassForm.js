@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PulseLoader } from "react-spinners";
 
-import Button from "../components/Button";
-import FormInput from "../components/FormInput";
+import Button from "../../../components/Button";
+import FormInput from "../../../components/FormInput";
 
 export default function ResetPassForm() {
   const oldPasswordRef = useRef();

@@ -15,14 +15,17 @@ export default function ListExpenses() {
 
   const deleteButtonHandler = (id) => {
     async function deleteExpenseApi(id) {
-      const response = await FetchApi(`${LocalHost}/expense/${id}`, "Delete", token);
+      const response = await FetchApi(
+        `${LocalHost}/expense/${id}`,
+        "Delete",
+        token
+      );
       const data = await response.json();
       notify(data.message, "success");
     }
     deleteExpenseApi(id);
     deleteExpense(id);
   };
-
   return (
     <Containers>
       {expenses.length > 0 ? (

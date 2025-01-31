@@ -6,7 +6,8 @@
 }
 
 .dashboardCards {
-  background-color: #eaeff1;
+  background-color: var(--body_background);
+  color:var(--body_color);
   border-radius: 5px;
   height: 17rem;
   width: 28rem;

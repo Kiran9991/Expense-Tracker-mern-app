@@ -4,6 +4,23 @@ import Col from '../../../components/Row';
 export default function Switch() {
   const [toggle, setToggle] = useState(false);
 
+  const setDarkMode = () => {
+    document.querySelector('body').setAttribute('data-theme', 'dark');
+  }
+
+  const setLightMode = () => {
+    document.querySelector('body').setAttribute('data-theme', 'light');
+  }
+
+  const toggleChange = () => {
+    if(toggle) {
+      setDarkMode()
+    }else {
+      setLightMode()
+    }
+    setToggle((prev) => !prev)
+  }
+
   return (
     <Col>
       <div
@@ -11,7 +28,7 @@ export default function Switch() {
           items-center px-[0.15rem] cursor-pointer 
           relative transition-colors duration-500
           ${toggle ? 'bg-red-300' : 'bg-gray-500'}`}
-        onClick={() => setToggle((prev) => !prev)}
+        onClick={toggleChange}
       >
         <div
           className={`bg-white h-5 w-5 rounded-full 

@@ -7,14 +7,33 @@
   box-sizing: border-box;
 }
 
+:root{
+  --body_background:#f8f5f5;
+  --body_color:black;
+  --sub_nav:rgb(217 201 203);
+  --form:white
+}
+
+[data-theme="dark"] {
+  --body_background:#282c34;
+  --body-color:white;
+  --sub_nav:rgb(100, 61, 66);
+  --form: #4e5563;
+}
+
+* {
+  transition: all 0.3s ease;
+}
+
 html {
   font-family: system-ui;
 }
 
 body {
   margin: 0;
-  background: #f8f5f5;
+  background: var(--body_background);
   font-family: "Lato", sans-serif;
   font-weight: 100;
   font-style: normal;
+  color:var(--body-color)
 }

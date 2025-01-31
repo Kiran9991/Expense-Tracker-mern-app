@@ -1,5 +1,5 @@
 .subNavBarContainer {
-  background: rgb(217 201 203);
+  background: var(--sub_nav);
   height: 35px;
 }
 

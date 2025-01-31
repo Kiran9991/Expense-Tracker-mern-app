@@ -6,6 +6,8 @@ const symbols = {
   signup: require("./signup.png"),
   sidebar: require("./sidebar.png"),
   trash: require("./trash.png"),
+  edit: require('./edit.png'),
+  delete: require("./delete.png")
 };
 
 export default symbols;

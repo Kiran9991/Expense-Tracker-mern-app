@@ -7,7 +7,7 @@ import NavBarLink from "./components/NavBarLink";
 import decodeToken from "../../hook/decodeToken";
 import { LocalHost } from "../..";
 import Icon from "./components/Icon";
-import Col from "../../components/Col";
+import Row from "../../components/Row";
 import Switch from "./components/Switch";
 import Profile from "./components/Profile";
 
@@ -52,8 +52,8 @@ const Header = () => {
   return (
     <>
       {isLogin && (
-        <Col>
-          <Col>
+        <Row>
+          <Row>
             {/* Expense Tracker Symbol */}
             <NavBarLink to={"/expense/form"}>
               <Icon src={symbols.Expense} />
@@ -65,14 +65,14 @@ const Header = () => {
             <NavBarLink to={"/expense/form"}>Form</NavBarLink>
             <NavBarLink to={`/expense/expenses/${page}`}>List</NavBarLink>
             <NavBarLink to={"/expense/about-us"}>About Us</NavBarLink>
-          </Col>
+          </Row>
 
-          <Col>
+          <Row>
           <Switch/>
-            <Col onClick={buyPremiumBtnHandler}>
+            <Row onClick={buyPremiumBtnHandler}>
               <Icon src={symbols.Premium} />
               <div>{isPremium ? "Premium" : "Buy Premium"}</div>
-            </Col>
+            </Row>
 
             <Profile>
               {username}
@@ -81,8 +81,8 @@ const Header = () => {
             <div onClick={signoutHandler} className=" transition hover:brightness-50 mr-2">
               <Icon src={symbols.Signout} />
             </div>
-          </Col>
-        </Col>
+          </Row>
+        </Row>
       )}
     </>
   );

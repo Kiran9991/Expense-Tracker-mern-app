@@ -7,6 +7,8 @@ import FetchApi from "../../../hook/FetchApi";
 import styles from "./ListItems.module.css";
 import Pagination from "./Pagination";
 import { UserContext } from "../../../store/user-context";
+import Containers from "../../../components/Containers";
+import Row from "../../../components/Row";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);
@@ -50,9 +52,16 @@ export default function ListExpenses() {
   }
 
   return (
-    <div className={styles.listItemsContainer}>
-      {content}
-      <Pagination />
-    </div>
+    // <div className={styles.listItemsContainer}>
+    //   {content}
+    //   <Pagination />
+    // </div>
+    <Containers>
+      <Row>
+        <div className="">
+          Expense Text - Rs. 1000 - description
+        </div>
+      </Row>
+    </Containers>
   );
 }

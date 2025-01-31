@@ -1,5 +1,4 @@
 import React, { useContext, useRef, useState } from "react";
-import styles from "./Form.module.css";
 import { expenseContext } from "../../../store/expense-context";
 import { LocalHost } from "../../..";
 import FetchApi from "../../../hook/FetchApi";
@@ -7,7 +6,10 @@ import notify from "../../../hook/notify";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../store/user-context";
 import { Button, FormInput } from "../../auth";
+import Row from "../../../components/Row";
 import Col from "../../../components/Col";
+import FloatInput from "../../../components/FloatInput";
+import Containers from "../../../components/Containers";
 
 export default function Form() {
   const [isWrap, setIsWrap] = useState(false);
@@ -56,30 +58,23 @@ export default function Form() {
   };
 
   return (
-    <div className={styles.formContainer}>
-      <div className={styles.formTitle}>Expense Tracker Form</div>
-      <Col>
+    <>
+    <Containers>
+      <div className='text-center text-3xl mb-4'>Expense Tracker Form</div>
+      <Row>
+        <Col>
         <FormInput text={"Expense Name"} type={"text"} ref={(ele) => (formRefs.current.expense = ele)} />
         <FormInput text={"Expense number"} type={"number"} ref={(el) => (formRefs.current.amount = el)} />
+        <Button type={'button'}>Wrap Form</Button>
+        </Col>
+        <Col>
         <FormInput text={"Expense description"} type={"text"} ref={(el) => (formRefs.current.description = el)} />
-        <FormInput text={"Expense category"} type={"text"} ref={(el) => (formRefs.current.amount = el)} />
-        
-        {/* <div className={isWrap ? styles.inputFormBox : styles.formGroup}>
-          <label className={styles.formLabel}>Category</label>
-          <select
-            id="category"
-            className={styles.category}
-            ref={(el) => (formRefs.current.category = el)}
-          >
-            <option value="electricity">Electricity</option>
-            <option value="travel">Travel</option>
-            <option value="food">Food</option>
-            <option value="home">Home</option>
-          </select>
-          </div> */}
-          <Button type={'button'}>Wrap Form</Button>
-          <Button type={'submit'}>Add Expense</Button>
-      </Col>
-    </div>
+        {/* <FormInput text={"Expense category"} type={"text"} ref={(el) => (formRefs.current.category = el)} /> */}
+        <FloatInput ref={(el) => (formRefs.current.category = el)}/>
+        <Button type={'submit'} onClick={handleSubmit}>Add Expense</Button>
+        </Col>
+      </Row>
+    </Containers>
+    </>
   );
 }

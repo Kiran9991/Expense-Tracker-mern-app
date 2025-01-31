@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Col from '../../../components/Col';
+import Col from '../../../components/Row';
 
 export default function Switch() {
   const [toggle, setToggle] = useState(false);

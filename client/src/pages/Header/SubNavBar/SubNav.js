@@ -1,17 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./SubNav.module.css";
 import symbols from "../../../images/Symbol";
 
 export default function SubNav() {
   return (
-    <nav className={styles.subNavBarContainer}>
-      {<img className={styles.icon} src={symbols.sidebar} alt="sidebar" />}
-      <Link to={"/users"} className={styles.navLinks}>
+    <nav className='h-9 bg-orange-200
+     flex items-center
+     '>
+      {<img className="h-full p-[5px] 
+      transition duration-500 hover:bg-gray-400
+      " src={symbols.sidebar} alt="sidebar" />}
+      <Link to={"/users"} className="
+      no-underline text-black font-bold px-1
+      font-sans transition duration-300 hover:bg-slate-300
+      h-full flex items-center
+      ">
         Users Lists
       </Link>
-      <Link to={"/chat"} className={styles.navLinks}>
+      <Link to={"/chat"} className="
+      no-underline text-black font-bold px-1
+      font-sans transition duration-300 hover:bg-slate-300
+      h-full flex items-center
+      ">
         Chat
       </Link>
     </nav>

@@ -34,7 +34,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <div className={styles.footer}>
+    <form className={styles.footer}>
       <input
         type="text"
         className={styles.input}
@@ -48,6 +48,6 @@ export default function Footer() {
       >
         Send
       </button>
-    </div>
+    </form>
   );
 }

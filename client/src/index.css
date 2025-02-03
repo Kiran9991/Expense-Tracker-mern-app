@@ -11,7 +11,8 @@
   --body_background:#f8f5f5;
   --body_color:black;
   --sub_nav:rgb(217 201 203);
-  --form:white
+  --form:white;
+  --id_bg:#d8b4fe;
 }
 
 [data-theme="dark"] {
@@ -19,6 +20,7 @@
   --body-color:white;
   --sub_nav:rgb(100, 61, 66);
   --form: #4e5563;
+  --id_bg: #6b21a8;
 }
 
 * {

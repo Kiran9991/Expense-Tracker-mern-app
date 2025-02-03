@@ -14,9 +14,9 @@ export default function Switch() {
 
   const toggleChange = () => {
     if(toggle) {
-      setDarkMode()
-    }else {
       setLightMode()
+    }else {
+      setDarkMode()
     }
     setToggle((prev) => !prev)
   }

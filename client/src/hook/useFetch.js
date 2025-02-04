@@ -27,7 +27,7 @@ export default function useFetch(url, method, stateData) {
         setData(json);
       } catch (error) {
         console.log(error.message);
-        setError(error);
+        setError(error.message);
       }
     }
     getDataApi(url, method);

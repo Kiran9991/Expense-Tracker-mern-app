@@ -66,7 +66,22 @@ const signin = async (req, res) => {
   }
 };
 
+// user/users-list
+const getUsersList = async(req, res) => {
+  try {
+    const users = await User.findAll({ attributes: ['id', 'username'] });
+
+    if(!users) throw `didn't find anything or something went wrong`
+
+    res.status(201).json({ message: 'successfully received users', users })
+
+  } catch(error) {
+    res.status(401).json({ message: error.message });
+  }
+}
+
 module.exports = {
   addUser,
   signin,
+  getUsersList
 };

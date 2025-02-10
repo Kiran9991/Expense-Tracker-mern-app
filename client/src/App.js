@@ -11,7 +11,6 @@ import {
   Chat,
   Toastify,
   LocalHost,
-  token,
   ExpenseRoutes,
   AuthRoutes,
 } from "./index";
@@ -33,16 +32,7 @@ function App() {
     (isPremium || localStorage.getItem("isPremium")) && setIsPremium(true);
     data &&
       addExpense(data.expensesPerPage, data.totalAmount, data.totalExpenses);
-  }, [
-    token,
-    isLogin,
-    isPremium,
-    page,
-    data,
-    location.pathname,
-    limit,
-    expenses.length,
-  ]);
+  }, [ token, isLogin, isPremium, page, data, location.pathname, limit, expenses.length ]);
 
   return (
     <>

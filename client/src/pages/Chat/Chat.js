@@ -9,7 +9,7 @@ export default function Chat() {
   return (
     <div className="flex justify-center ">
       <ChatSideBar/>
-    <div className="w-[130vh]
+    <div className="w-[130vh] mr-40
      h-[80vh] relative border
       border-[rgb(197,195,195)]
 "

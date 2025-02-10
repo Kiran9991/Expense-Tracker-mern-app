@@ -7,9 +7,9 @@ import NavBarLink from "./components/NavBarLink";
 import decodeToken from "../../hook/decodeToken";
 import { LocalHost } from "../..";
 import Icon from "./components/Icon";
-import Row from "../../components/Row";
 import Switch from "./components/Switch";
 import Profile from "./components/Profile";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Header = () => {
   const { isLogin, setIsLogin, isPremium, setIsPremium } =
@@ -52,37 +52,40 @@ const Header = () => {
   return (
     <>
       {isLogin && (
-        <Row>
+        <Container>
           <Row>
-            {/* Expense Tracker Symbol */}
+            <Col className="flex gap-2 items-center">
+          {/* Expense Tracker Symbol */}
             <NavBarLink to={"/expense/form"}>
               <Icon src={symbols.Expense} />
             </NavBarLink>
-
-            {/* Navigation Links */}
-            <NavBarLink to={"/expense/dashboard"}>Dashboard</NavBarLink>
-            <NavBarLink to={"/expense/accounts"}>Account</NavBarLink>
-            <NavBarLink to={"/expense/form"}>Form</NavBarLink>
-            <NavBarLink to={`/expense/expenses/${page}`}>List</NavBarLink>
-            <NavBarLink to={"/expense/about-us"}>About Us</NavBarLink>
-          </Row>
-
-          <Row>
+            
+          {/* Navigation Links */}
+          <NavBarLink to={"/expense/dashboard"}>Dashboard</NavBarLink>
+          <NavBarLink to={"/expense/accounts"}>Account</NavBarLink>
+          <NavBarLink to={"/expense/form"}>Form</NavBarLink>
+          <NavBarLink to={`/expense/expenses/${page}`}>List</NavBarLink>
+          <NavBarLink to={"/expense/about-us"}>About Us</NavBarLink>
+          
+            </Col>
+            <Col className="flex gap-2 items-center">
           <Switch/>
-            <Row onClick={buyPremiumBtnHandler}>
-              <Icon src={symbols.Premium} />
+
+            <div onClick={buyPremiumBtnHandler} className="flex w-fit gap-1 items-center">
+              <div className="h-10 w-10"> <img src={symbols.Premium} alt="premium"/></div>
               <div>{isPremium ? "Premium" : "Buy Premium"}</div>
-            </Row>
+            </div>
 
             <Profile>
               {username}
             </Profile>
-
+            
             <div onClick={signoutHandler} className=" transition hover:brightness-50 mr-2">
               <Icon src={symbols.Signout} />
             </div>
+            </Col>
           </Row>
-        </Row>
+        </Container>
       )}
     </>
   );

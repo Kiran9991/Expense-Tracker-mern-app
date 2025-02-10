@@ -22,7 +22,7 @@ export default function Switch() {
   }
 
   return (
-    <Col>
+    <div className='flex items-center'>
       <div
         className={`h-6 w-14 rounded-full flex 
           items-center px-[0.15rem] cursor-pointer 
@@ -34,10 +34,10 @@ export default function Switch() {
           className={`bg-white h-5 w-5 rounded-full 
             transition-transform duration-500
             transform
-             ${toggle ? 'translate-x-8' : 'translate-x-0'}`}
+             ${toggle ? 'translate-x-4' : 'translate-x-0'}`}
         ></div>
       </div>
-      <div>Switch Button</div>
-    </Col>
+      <div className='bg-gray-400'>Switch Button</div>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 import { toast, Bounce } from "react-toastify";
 
 export default function notify(message, type, span) {
-  console.log('object')
   toast[type](message, {
     position: "top-right",
     autoClose: span ? span : 5000,

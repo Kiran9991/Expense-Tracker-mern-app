@@ -24,6 +24,7 @@ function App() {
     `${LocalHost}/expense/expenses?page=${page}&limit=${limit}`,
     "GET",
   );
+  
 
   useEffect(() => {
     if (!token) return setIsLogin(false);

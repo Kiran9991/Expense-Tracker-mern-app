@@ -1,9 +1,9 @@
 import symbols from "../../../images/Symbol";
-import Row from "../../../components/Row";
+import { Row } from "react-bootstrap";
 
 const ExpenseRow = ({ expense, amount, description, onDelete }) => {
   return (
-    <Row>
+    <Row className="justify-center">
       <div
         className="border
         w-[600px] p-1 m-1

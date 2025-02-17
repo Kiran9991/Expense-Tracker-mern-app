@@ -5,9 +5,9 @@ import { LocalHost } from "../../..";
 import notify from "../../../hook/notify";
 import FetchApi from "../../../hook/FetchApi";
 import styles from "./ListItems.module.css";
-import Containers from "../../../components/Containers";
-import Pagination from "./Pagination";
+import { Container, Row, Col } from "react-bootstrap";
 import ExpenseRow from "./ExpenseRow";
+import Paginations from "./Pagination";
 
 export default function ListExpenses() {
   const { expenses, deleteExpense } = useContext(expenseContext);
@@ -27,8 +27,10 @@ export default function ListExpenses() {
     deleteExpense(id);
   };
   return (
-    <Containers>
-      {expenses.length > 0 ? (
+    <Container>
+      <Row>
+        <Col>
+        {expenses.length > 0 ? (
         expenses.map((ele) => (
           <ExpenseRow
             key={ele.id}
@@ -41,7 +43,9 @@ export default function ListExpenses() {
       ) : (
         <div className={styles.listNoItem}>No Expenses! Add Expenses here</div>
       )}
-      <Pagination />
-    </Containers>
+      <Paginations/>
+        </Col>
+      </Row>
+    </Container>
   );
 }

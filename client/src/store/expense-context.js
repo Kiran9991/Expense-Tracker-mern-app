@@ -12,6 +12,7 @@ const obj = {
   prevPage: () => {},
   nextPage: () => {},
   setPageLimit: () => {},
+  setPage: () => {},
 };
 
 export const expenseContext = createContext(obj);
@@ -46,6 +47,11 @@ const ExpenseContextProvider = (props) => {
     setExpense([]);
   };
 
+  // const totalNoOfPages = (total, limit) => {
+  //   if(total % limit !== 0) return Math.floor(total/limit)+1;
+  //   return total/limit;
+  // }
+
   const prevPageUpdateHandler = () => {
     page > 1 && setPage((prev) => prev - 1);
     page > 1 && localStorage.setItem("page", page - 1);
@@ -55,6 +61,11 @@ const ExpenseContextProvider = (props) => {
     setPage((prev) => (expenses.length > 0 ? prev + 1 : 1));
     localStorage.setItem("page", expenses.length > 0 ? page + 1 : 1);
   };
+
+  const setPageHandler = (page) => {
+    setPage(page);
+    localStorage.setItem("page", page);
+  }
 
   const setLimitHandler = (val) => {
     setLimit(val);
@@ -73,6 +84,7 @@ const ExpenseContextProvider = (props) => {
     prevPage: prevPageUpdateHandler,
     nextPage: nextPageUpdateHandler,
     setPageLimit: setLimitHandler,
+    setPage: setPageHandler,
   };
 
   return (

@@ -57,8 +57,6 @@ export default function Paginations() {
 
       <Pagination.Item active>{page}</Pagination.Item>
       {/* <Pagination.Item>{page+1}</Pagination.Item>
-      <Pagination.Item>{page+2}</Pagination.Item>
-      <Pagination.Item>{page+3}</Pagination.Item>
 
       <Pagination.Ellipsis /> */}
       <Pagination.Item>{totalNoOfPages(totalExpenses, limit)}</Pagination.Item>
